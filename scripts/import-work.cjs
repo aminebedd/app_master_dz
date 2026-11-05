@@ -76,6 +76,9 @@ async function shot(src, dst, width) {
   await shot(SCHOOL_IMG, path.join(sdir, "admin-dashboard.webp"), 1440);
 
   console.log(JSON.stringify(report, null, 1));
+
+  // Re-copying a store overwrites its index.html, so put the ordering engine back in.
+  require("./wire-demos.cjs");
 })().catch((e) => {
   console.error(e);
   process.exit(1);
