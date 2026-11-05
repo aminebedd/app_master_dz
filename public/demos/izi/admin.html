@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>iZi Lunettes — لوحة التحكم</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #F6F5F3; --ink: #141414; --muted: #8A857E; --gold: #B8893F; --line: #ECEAE6; --ok: #1F9D55; --no: #D64545; --wait: #E0A100; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: "Cairo", sans-serif; display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+  aside { background: var(--ink); color: #fff; padding: 26px 18px; }
+  .logo { font-family: "Syne", sans-serif; font-weight: 800; font-size: 22px; direction: ltr; text-align: right; white-space: nowrap; }
+  .logo span { color: var(--gold); }
+  aside small { color: #8d8a85; font-size: 13px; display: block; margin: 4px 0 30px; }
+  aside a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; color: #c9c6c0; font-weight: 600; margin-bottom: 4px; }
+  aside a.on { background: rgba(255,255,255,.1); color: #fff; }
+  aside a b { margin-right: auto; background: var(--gold); color: #111; border-radius: 20px; font-size: 12px; padding: 1px 9px; }
+  main { padding: 22px 28px; }
+  .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .top h1 { font-size: 28px; font-weight: 800; }
+  .top p { color: var(--muted); font-size: 14px; }
+  .search { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 11px 16px; width: 300px; color: var(--muted); font-size: 14px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+  .kpi { background: #fff; border-radius: 18px; padding: 14px 18px; border: 1px solid var(--line); }
+  .kpi span { color: var(--muted); font-size: 14px; }
+  .kpi b { display: block; font-size: 28px; font-weight: 800; margin-top: 2px; }
+  .kpi i { font-style: normal; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .grid { display: grid; grid-template-columns: 1fr 330px; gap: 18px; align-items: start; }
+  .card { background: #fff; border-radius: 20px; border: 1px solid var(--line); }
+  .tabs { display: flex; gap: 6px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+  .tabs span { padding: 7px 14px; border-radius: 20px; font-size: 14px; font-weight: 700; color: var(--muted); }
+  .tabs span.on { background: var(--ink); color: #fff; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: right; font-size: 13px; color: var(--muted); font-weight: 600; padding: 10px 14px; }
+  td { white-space: nowrap; padding: 10px 14px; border-top: 1px solid var(--line); font-size: 14px; vertical-align: middle; }
+  tr.sel td { background: #FBF7EF; }
+  .prod { display: flex; align-items: center; gap: 10px; }
+  .prod img { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; }
+  .prod small { display: block; color: var(--muted); }
+  .st { font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+  .st.w { background: #FFF5D6; color: #9A6E00; }
+  .st.a { background: #E3F5EA; color: var(--ok); }
+  .st.r { background: #FCE6E6; color: var(--no); }
+  .acts { display: flex; gap: 6px; }
+  .acts span { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-weight: 800; }
+  .acts .y { background: var(--ok); color: #fff; }
+  .acts .n { background: #fff; color: var(--no); border: 1px solid #F1C9C9; }
+  .detail { padding: 18px; }
+  .detail .hd { display: flex; justify-content: space-between; align-items: center; }
+  .detail h3 { font-size: 18px; }
+  .detail .ph { margin: 12px 0; border-radius: 14px; overflow: hidden; height: 110px; }
+  .detail .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+  .row span { color: var(--muted); }
+  .row b { font-weight: 700; }
+  .tot { display: flex; justify-content: space-between; margin: 10px 0 12px; font-size: 18px; font-weight: 800; }
+  .tot b { color: var(--gold); }
+  .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btns a { text-align: center; padding: 13px; border-radius: 14px; font-weight: 800; }
+  .accept { background: var(--ok); color: #fff; }
+  .reject { background: #fff; color: var(--no); border: 1.5px solid #F1C9C9; }
+  .call { display: block; text-align: center; margin-top: 8px; padding: 9px; border-radius: 14px; background: var(--bg); font-weight: 700; font-size: 14px; }
+</style>
+</head>
+<body>
+  <aside>
+    <div class="logo">iZi <span>Lunettes</span></div>
+    <small>لوحة التحكم</small>
+    <a class="on">📦 الطلبيات <b>4</b></a>
+    <a>🕶 المنتجات</a>
+    <a>🚚 التوصيل</a>
+    <a>📊 الإحصائيات</a>
+    <a>⚙️ الإعدادات</a>
+  </aside>
+  <main>
+    <div class="top">
+      <div><h1>الطلبيات</h1><p>اقبل ولا ارفض الطلبيات الجديدة</p></div>
+      <div class="search">🔍 ابحث بالاسم ولا الرقم…</div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span>طلبيات جديدة</span><b>4</b><i style="background:#FFF5D6;color:#9A6E00">في الانتظار</i></div>
+      <div class="kpi"><span>مقبولة اليوم</span><b>9</b><i style="background:#E3F5EA;color:#1F9D55">جاهزة للتوصيل</i></div>
+      <div class="kpi"><span>مرفوضة</span><b>1</b><i style="background:#FCE6E6;color:#D64545">اليوم</i></div>
+      <div class="kpi"><span>مبيعات اليوم</span><b><bdi>186 400</bdi> دج</b><i style="background:#F3ECE0;color:#B8893F">10 طلبيات</i></div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="tabs"><span class="on">الكل</span><span>في الانتظار (4)</span><span>مقبولة</span><span>مرفوضة</span></div>
+        <table>
+          <tr><th>الطلبية</th><th>الزبون</th><th>المنتج</th><th>الولاية</th><th>المبلغ</th><th>الحالة</th><th></th></tr>
+          <tr class="sel"><td>#1048</td><td><b>أمين ب.</b><small style="color:var(--muted);display:block" dir="ltr">0661 •• •• 32</small></td><td><div class="prod"><img src="ig/ig2.jpg" alt=""><div>كاري بوردو<small>×1</small></div></div></td><td>19 - سطيف</td><td><bdi>18 500</bdi> دج</td><td><span class="st w">في الانتظار</span></td><td><div class="acts"><span class="y">✓</span><span class="n">✕</span></div></td></tr>
+          <tr><td>#1047</td><td><b>سارة م.</b><small style="color:var(--muted);display:block" dir="ltr">0770 •• •• 18</small></td><td><div class="prod"><img src="ig/ig5.jpg" alt=""><div>بلا إطار · أزرق<small>×1</small></div></div></td><td>16 - الجزائر</td><td><bdi>21 500</bdi> دج</td><td><span class="st w">في الانتظار</span></td><td><div class="acts"><span class="y">✓</span><span class="n">✕</span></div></td></tr>
+          <tr><td>#1046</td><td><b>يوسف ك.</b><small style="color:var(--muted);display:block" dir="ltr">0552 •• •• 90</small></td><td><div class="prod"><img src="ig/ig9.jpg" alt=""><div>أفياتور · بني<small>×2</small></div></div></td><td>25 - قسنطينة</td><td><bdi>25 800</bdi> دج</td><td><span class="st w">في الانتظار</span></td><td><div class="acts"><span class="y">✓</span><span class="n">✕</span></div></td></tr>
+          <tr><td>#1045</td><td><b>رياض ح.</b><small style="color:var(--muted);display:block" dir="ltr">0698 •• •• 05</small></td><td><div class="prod"><img src="ig/ig6.jpg" alt=""><div>أفياتور ذهبي<small>×1</small></div></div></td><td>31 - وهران</td><td><bdi>24 000</bdi> دج</td><td><span class="st w">في الانتظار</span></td><td><div class="acts"><span class="y">✓</span><span class="n">✕</span></div></td></tr>
+          <tr><td>#1044</td><td><b>نسرين ع.</b><small style="color:var(--muted);display:block" dir="ltr">0665 •• •• 47</small></td><td><div class="prod"><img src="ig/ig11.jpg" alt=""><div>بلا إطار · شفاف<small>×1</small></div></div></td><td>19 - سطيف</td><td><bdi>21 500</bdi> دج</td><td><span class="st a">مقبولة</span></td><td></td></tr>
+          <tr><td>#1043</td><td><b>كريم ل.</b><small style="color:var(--muted);display:block" dir="ltr">0541 •• •• 63</small></td><td><div class="prod"><img src="ig/ig7.jpg" alt=""><div>أفياتور فضي<small>×1</small></div></div></td><td>06 - بجاية</td><td><bdi>12 900</bdi> دج</td><td><span class="st r">مرفوضة</span></td><td></td></tr>
+        </table>
+      </div>
+      <div class="card detail">
+        <div class="hd"><h3>طلبية #1048</h3><span class="st w">في الانتظار</span></div>
+        <div class="ph"><img src="ig/ig2.jpg" alt=""></div>
+        <div class="row"><span>المنتج</span><b>كاري بوردو · ×1</b></div>
+        <div class="row"><span>الزبون</span><b>أمين ب.</b></div>
+        <div class="row"><span>الهاتف</span><b dir="ltr">0661 •• •• 32</b></div>
+        <div class="row"><span>العنوان</span><b>19 - سطيف · العلمة</b></div>
+        <div class="row"><span>التوصيل</span><b>للدار</b></div>
+        <div class="row"><span>التاريخ</span><b>اليوم · 14:32</b></div>
+        <div class="tot"><span>المجموع</span><b><bdi>18 500</bdi> دج</b></div>
+        <div class="btns"><a class="accept">✓ قبول</a><a class="reject">✕ رفض</a></div>
+        <a class="call">☎ اتصل بالزبون</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

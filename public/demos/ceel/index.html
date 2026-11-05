@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CeeL Store — Électroménager Tizi Ouzou</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="fonts/poppins.css" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6B1A;
+    --orange-2: #FF8A3D;
+    --orange-soft: #FFF0E6;
+    --black: #141414;
+    --gray: #F4F2EF;
+    --muted: #77716B;
+    --line: #E9E4DE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--gray); color: var(--black); font-family: "Poppins", sans-serif; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+  .top { background: var(--black); color: #fff; font-size: 13px; }
+  .top .wrap { display: flex; justify-content: space-between; height: 38px; align-items: center; }
+  .top b { color: var(--orange); }
+
+  header { background: #fff; border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; gap: 28px; height: 86px; }
+  .logo { width: 64px; height: 64px; border-radius: 50%; background: var(--orange); color: #fff; display: grid; place-items: center; text-align: center; line-height: .9; flex-shrink: 0; box-shadow: 0 6px 18px rgba(255,107,26,.35); }
+  .logo b { font-size: 17px; font-weight: 900; letter-spacing: .5px; display: block; }
+  .logo small { font-size: 8px; font-weight: 700; letter-spacing: 2px; }
+  .logo-txt { font-weight: 800; font-size: 22px; }
+  .logo-txt span { color: var(--orange); }
+  .search { flex: 1; display: flex; align-items: center; background: var(--gray); border-radius: 14px; padding: 0 8px 0 18px; height: 52px; border: 1.5px solid transparent; }
+  .search span { flex: 1; color: var(--muted); font-size: 15px; }
+  .search i { font-style: normal; background: var(--orange); color: #fff; height: 38px; padding: 0 20px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+  .acts { display: flex; gap: 22px; align-items: center; font-size: 14px; font-weight: 600; }
+  .acts .cart { position: relative; background: var(--black); color: #fff; padding: 11px 18px; border-radius: 12px; }
+  .acts .cart em { position: absolute; top: -8px; right: -8px; background: var(--orange); width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 12px; }
+
+  .cats { display: flex; gap: 12px; padding: 18px 0; overflow: hidden; }
+  .cats a { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 40px; padding: 9px 18px 9px 10px; font-weight: 600; font-size: 14px; white-space: nowrap; }
+  .cats a i { font-style: normal; width: 32px; height: 32px; border-radius: 50%; background: var(--orange-soft); display: grid; place-items: center; font-size: 16px; }
+  .cats a.on { background: var(--orange); color: #fff; border-color: var(--orange); }
+  .cats a.on i { background: rgba(255,255,255,.25); }
+
+  .hero { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; }
+  .main { position: relative; background: var(--orange); border-radius: 28px; overflow: hidden; color: #fff; display: grid; grid-template-columns: 1.1fr 1fr; min-height: 470px; }
+  .main::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; background: var(--orange-2); right: -120px; top: -60px; }
+  .main .txt { position: relative; padding: 54px 0 48px 52px; display: flex; flex-direction: column; justify-content: center; }
+  .pill { display: inline-block; align-self: flex-start; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.35); padding: 6px 14px; border-radius: 30px; font-size: 13px; font-weight: 600; }
+  .main h1 { font-size: 56px; line-height: 1.04; font-weight: 900; margin: 18px 0 16px; letter-spacing: -1.5px; }
+  .main h1 span { color: var(--black); }
+  .main p { font-size: 17px; opacity: .92; max-width: 380px; line-height: 1.6; }
+  .btns { display: flex; gap: 12px; margin-top: 28px; }
+  .btn { padding: 15px 26px; border-radius: 14px; font-weight: 700; font-size: 15px; }
+  .btn-b { background: var(--black); color: #fff; }
+  .btn-w { background: #fff; color: var(--black); }
+  .main .pic { position: relative; display: flex; align-items: flex-end; justify-content: center; padding-top: 30px; }
+  .main .pic img { width: 88%; height: 420px; object-fit: cover; border-radius: 24px 24px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,.18); }
+  .tagp { position: absolute; top: 46px; left: 0; background: #fff; color: var(--black); border-radius: 16px; padding: 10px 16px; font-weight: 800; font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+  .tagp small { display: block; color: var(--orange); font-size: 20px; }
+  .side { display: grid; gap: 18px; grid-template-rows: 1fr 1fr; }
+  .promo { border-radius: 24px; overflow: hidden; position: relative; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; }
+  .promo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .promo::after { content: ""; position: absolute; inset: 0; }
+  .promo > * { position: relative; z-index: 2; }
+  .promo > img { position: absolute; z-index: 0; }
+  .promo::after { z-index: 1; }
+  .promo.dark::after { background: linear-gradient(90deg, rgba(20,20,20,.92) 35%, rgba(20,20,20,.1)); }
+  .promo.dark { color: #fff; }
+  .promo.light::after { background: linear-gradient(90deg, rgba(255,240,230,.96) 40%, rgba(255,240,230,0)); }
+  .promo h3 { font-size: 24px; font-weight: 800; line-height: 1.15; }
+  .promo h3 span { color: var(--orange); }
+  .promo a { align-self: flex-start; font-weight: 700; font-size: 14px; border-bottom: 2px solid var(--orange); }
+
+  .perks { display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border-radius: 22px; margin-top: 18px; border: 1px solid var(--line); }
+  .perk { display: flex; gap: 14px; align-items: center; padding: 22px 24px; border-right: 1px solid var(--line); }
+  .perk:last-child { border-right: 0; }
+  .perk i { font-style: normal; width: 46px; height: 46px; border-radius: 14px; background: var(--orange-soft); display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
+  .perk b { display: block; font-size: 15px; }
+  .perk span { font-size: 13px; color: var(--muted); }
+
+  section { padding-top: 56px; }
+  .sh { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+  .sh h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; }
+  .sh h2 span { color: var(--orange); }
+  .timer { display: flex; gap: 6px; align-items: center; font-size: 14px; font-weight: 600; color: var(--muted); }
+  .timer b { background: var(--black); color: #fff; border-radius: 8px; padding: 6px 9px; font-size: 15px; }
+  .sh a { color: var(--orange); font-weight: 700; font-size: 15px; }
+
+  .deals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .card { background: #fff; border-radius: 22px; padding: 14px; border: 1px solid var(--line); position: relative; }
+  .card .ph { height: 230px; border-radius: 16px; overflow: hidden; background: var(--gray); }
+  .card .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .off { position: absolute; top: 24px; left: 24px; background: var(--orange); color: #fff; font-weight: 800; font-size: 13px; padding: 4px 10px; border-radius: 8px; }
+  .heart { position: absolute; top: 24px; right: 24px; width: 34px; height: 34px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-size: 15px; }
+  .card .br { font-size: 12px; color: var(--muted); font-weight: 600; margin-top: 14px; text-transform: uppercase; letter-spacing: 1px; }
+  .card h4 { font-size: 16px; font-weight: 700; margin: 4px 0 6px; line-height: 1.35; min-height: 43px; }
+  .stars { color: #FFB020; font-size: 13px; }
+  .stars span { color: var(--muted); }
+  .pr { display: flex; align-items: end; justify-content: space-between; margin-top: 10px; }
+  .pr b { font-size: 21px; font-weight: 800; }
+  .pr s { display: block; color: var(--muted); font-size: 13px; }
+  .add { width: 44px; height: 44px; border-radius: 12px; background: var(--orange); color: #fff; display: grid; place-items: center; font-size: 24px; font-weight: 600; }
+  .stock { margin-top: 12px; font-size: 12px; color: var(--muted); }
+  .stock div { height: 6px; background: var(--gray); border-radius: 6px; margin-top: 5px; overflow: hidden; }
+  .stock div i { display: block; height: 100%; background: var(--orange); border-radius: 6px; }
+
+  .small { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .mini { background: #fff; border-radius: 20px; padding: 12px 12px 16px; border: 1px solid var(--line); text-align: center; }
+  .mini img { width: 100%; height: 150px; object-fit: cover; border-radius: 14px; }
+  .mini b { display: block; font-size: 14px; margin-top: 10px; }
+  .mini span { color: var(--orange); font-weight: 800; font-size: 15px; }
+
+  .quick { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .qbox { background: var(--black); color: #fff; border-radius: 28px; padding: 44px; position: relative; overflow: hidden; }
+  .qbox::after { content: "⚡"; position: absolute; right: 30px; bottom: -30px; font-size: 220px; opacity: .08; }
+  .qbox h2 { font-size: 36px; font-weight: 800; line-height: 1.1; }
+  .qbox h2 span { color: var(--orange); }
+  .qbox p { color: #bdb7b0; margin: 14px 0 26px; line-height: 1.7; max-width: 420px; }
+  .steps { display: grid; gap: 12px; }
+  .steps div { display: flex; gap: 14px; align-items: center; font-weight: 500; }
+  .steps em { font-style: normal; width: 34px; height: 34px; border-radius: 10px; background: var(--orange); display: grid; place-items: center; font-weight: 800; }
+  .form { background: #fff; border-radius: 28px; padding: 36px; border: 1px solid var(--line); display: grid; gap: 14px; }
+  .form .sel { display: flex; gap: 14px; align-items: center; background: var(--orange-soft); border-radius: 16px; padding: 12px; }
+  .form .sel img { width: 64px; height: 64px; object-fit: cover; border-radius: 12px; }
+  .form .sel b { display: block; }
+  .form .sel span { color: var(--orange); font-weight: 800; }
+  .f2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fld label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+  .fld div { background: var(--gray); border-radius: 12px; padding: 13px 15px; font-size: 15px; }
+  .chips { display: flex; gap: 10px; }
+  .chips span { flex: 1; text-align: center; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px; font-weight: 600; font-size: 14px; }
+  .chips span.on { border-color: var(--orange); color: var(--orange); background: var(--orange-soft); }
+  .form .btn { background: var(--orange); color: #fff; text-align: center; padding: 17px; font-size: 16px; }
+  .form .alt { text-align: center; font-size: 14px; color: var(--muted); }
+  .form .alt b { color: #1FAF54; }
+
+  .shop { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; }
+  .map { border-radius: 28px; min-height: 300px; position: relative; overflow: hidden; background:
+      linear-gradient(#ECE7E1 2px, transparent 2px) 0 0/60px 60px,
+      linear-gradient(90deg, #ECE7E1 2px, transparent 2px) 0 0/60px 60px, #F9F7F4; border: 1px solid var(--line); }
+  .map .road { position: absolute; left: -10%; right: -10%; top: 54%; height: 34px; background: #fff; transform: rotate(-8deg); border-top: 2px solid var(--line); border-bottom: 2px solid var(--line); }
+  .map .pin { position: absolute; left: 46%; top: 30%; background: var(--orange); color: #fff; padding: 10px 16px; border-radius: 14px; font-weight: 700; font-size: 14px; box-shadow: 0 10px 24px rgba(255,107,26,.4); }
+  .map .pin::after { content: ""; position: absolute; left: 50%; bottom: -8px; border: 8px solid transparent; border-top-color: var(--orange); border-bottom: 0; transform: translateX(-50%); }
+  .info { background: #fff; border-radius: 28px; padding: 36px; border: 1px solid var(--line); }
+  .info h2 { font-size: 28px; font-weight: 800; margin-bottom: 18px; }
+  .info h2 span { color: var(--orange); }
+  .info .r { display: flex; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+  .info .r i { font-style: normal; font-size: 20px; width: 40px; height: 40px; border-radius: 12px; background: var(--orange-soft); display: grid; place-items: center; }
+  .info .r span { color: var(--muted); font-size: 13px; display: block; }
+
+  footer { margin-top: 70px; background: var(--black); color: #bdb7b0; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 34px; padding-bottom: 34px; }
+  footer .logo-txt { color: #fff; }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    .top .wrap span:last-child { display: none; }
+    header .wrap { flex-wrap: wrap; height: auto; padding-top: 12px; padding-bottom: 12px; gap: 12px; }
+    .logo { width: 50px; height: 50px; }
+    .logo b { font-size: 13px; }
+    .acts span.hide { display: none; }
+    .acts { margin-left: auto; }
+    .search { order: 3; flex-basis: 100%; height: 48px; }
+    .search span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 14px; min-width: 0; }
+    .search { min-width: 0; width: 100%; }
+    .search i { padding: 0 14px; }
+    .btns .btn { white-space: nowrap; padding: 14px 18px; font-size: 14px; }
+    .cats { flex-wrap: nowrap; overflow: hidden; }
+    .hero { grid-template-columns: 1fr; }
+    .main { grid-template-columns: 1fr; min-height: 0; border-radius: 22px; }
+    .main .txt { padding: 30px 24px 10px; }
+    .main h1 { font-size: 38px; }
+    .main .pic img { height: 300px; }
+    .tagp { top: 20px; left: 16px; }
+    .side { grid-template-rows: auto; grid-template-columns: 1fr 1fr; }
+    .promo { min-height: 190px; padding: 16px; }
+    .promo h3 { font-size: 17px; }
+    .perks { grid-template-columns: 1fr 1fr; }
+    .perk { padding: 16px; border-bottom: 1px solid var(--line); }
+    .perk:nth-child(2) { border-right: 0; }
+    .sh h2 { font-size: 23px; }
+    .timer { display: none; }
+    .deals { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card .ph { height: 160px; }
+    .card h4 { font-size: 14px; min-height: 38px; }
+    .pr b { font-size: 16px; }
+    .add { width: 36px; height: 36px; font-size: 20px; }
+    .small { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .mini img { height: 100px; }
+    .quick, .shop { grid-template-columns: 1fr; }
+    .qbox, .form, .info { padding: 26px 20px; }
+    .qbox h2 { font-size: 28px; }
+    footer .wrap { flex-direction: column; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+  <div class="top"><div class="wrap"><span>🚚 <b>Livraison disponible</b> · Paiement à la livraison</span><span>📍 Tizi Ouzou · Hesnaoua · Ouvert de <b>10h à 20h</b></span></div></div>
+
+  <header>
+    <div class="wrap">
+      <a href="#" style="display:flex;align-items:center;gap:12px"><span class="logo"><span><b>CEEL</b><small>STORE</small></span></span><span class="logo-txt">CeeL <span>Store</span></span></a>
+      <div class="search"><span>🔍 Rechercher un frigo, une clim, une machine à café…</span><i>Rechercher</i></div>
+      <div class="acts"><span class="hide">❤️ Favoris</span><span class="hide">👤 Compte</span><a class="cart" href="#">🛒 Panier<em>2</em></a></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="cats">
+      <a class="on"><i>⚡</i>Tout</a><a><i>🧊</i>Réfrigérateurs</a><a><i>❄️</i>Climatiseurs</a><a><i>🔥</i>Cuisinières</a><a><i>🌀</i>Machines à laver</a><a><i>☕</i>Café</a><a><i>🍹</i>Petit électroménager</a><a><i>🧹</i>Entretien</a>
+    </div>
+
+    <div class="hero">
+      <div class="main">
+        <div class="txt">
+          <span class="pill">⚡ Nouvelle boutique en ligne</span>
+          <h1>Votre maison,<br>en mode <span>CeeL</span> ⚡</h1>
+          <p>Frigos, climatiseurs, cuisinières et petit électroménager. Commandez en ligne, on vous livre — ou passez nous voir à Hesnaoua.</p>
+          <div class="btns"><a class="btn btn-b" href="#deals">Voir les offres</a><a class="btn btn-w" href="#order">Commander</a></div>
+        </div>
+        <div class="pic"><img src="img/fridge.jpg" alt=""><div class="tagp">Frigo Side by Side<small>dès 189 000 DA</small></div></div>
+      </div>
+      <div class="side">
+        <div class="promo dark"><img src="img/aircon.jpg" alt=""><h3>Climatiseurs<br><span>-15%</span> cette semaine</h3><a>Découvrir →</a></div>
+        <div class="promo light"><img src="img/espresso.jpg" alt=""><h3>Coin <span>café</span><br>à la maison</h3><a>Machines à café →</a></div>
+      </div>
+    </div>
+
+    <div class="perks">
+      <div class="perk"><i>🚚</i><div><b>Livraison</b><span>Partout en Algérie</span></div></div>
+      <div class="perk"><i>💵</i><div><b>Paiement à la livraison</b><span>Payez à la réception</span></div></div>
+      <div class="perk"><i>🛡️</i><div><b>Garantie</b><span>Sur tous les produits</span></div></div>
+      <div class="perk"><i>🏬</i><div><b>Magasin à Tizi</b><span>Hesnaoua · 10h–20h</span></div></div>
+    </div>
+
+    <section id="deals">
+      <div class="sh"><h2>Offres <span>du jour</span> ⚡</h2><div class="timer">Se termine dans <b>08</b>:<b>42</b>:<b>17</b></div></div>
+      <div class="deals">
+        <div class="card"><div class="ph"><img src="img/washer.jpg" alt=""></div><span class="off">-12%</span><span class="heart">♡</span><div class="br">Lavage</div><h4>Machine à laver 8 kg, hublot blanc</h4><div class="stars">★★★★★ <span>(24)</span></div><div class="pr"><div><s>84 000 DA</s><b>73 900 DA</b></div><a class="add">+</a></div><div class="stock">Plus que 4 en stock<div><i style="width:30%"></i></div></div></div>
+        <div class="card"><div class="ph"><img src="img/fridge-open.jpg" alt=""></div><span class="off">-8%</span><span class="heart">♡</span><div class="br">Froid</div><h4>Réfrigérateur combiné No Frost</h4><div class="stars">★★★★☆ <span>(18)</span></div><div class="pr"><div><s>112 000 DA</s><b>102 900 DA</b></div><a class="add">+</a></div><div class="stock">Plus que 6 en stock<div><i style="width:45%"></i></div></div></div>
+        <div class="card"><div class="ph"><img src="img/microwave.jpg" alt=""></div><span class="off">-20%</span><span class="heart">♡</span><div class="br">Cuisson</div><h4>Micro-ondes 25 L avec grill</h4><div class="stars">★★★★★ <span>(31)</span></div><div class="pr"><div><s>24 000 DA</s><b>18 900 DA</b></div><a class="add">+</a></div><div class="stock">Plus que 3 en stock<div><i style="width:22%"></i></div></div></div>
+        <div class="card"><div class="ph"><img src="img/hob.jpg" alt=""></div><span class="off">-10%</span><span class="heart">♡</span><div class="br">Cuisson</div><h4>Plaque de cuisson gaz 5 feux inox</h4><div class="stars">★★★★☆ <span>(12)</span></div><div class="pr"><div><s>46 000 DA</s><b>41 400 DA</b></div><a class="add">+</a></div><div class="stock">Plus que 7 en stock<div><i style="width:55%"></i></div></div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sh"><h2>Petit <span>électroménager</span></h2><a href="#">Tout voir →</a></div>
+      <div class="small">
+        <div class="mini"><img src="img/blender.jpg" alt=""><b>Blender</b><span>9 900 DA</span></div>
+        <div class="mini"><img src="img/kettle.jpg" alt=""><b>Bouilloire verre</b><span>4 500 DA</span></div>
+        <div class="mini"><img src="img/grinder.jpg" alt=""><b>Moulin à café</b><span>12 900 DA</span></div>
+        <div class="mini"><img src="img/toaster.jpg" alt=""><b>Grille-pain</b><span>6 900 DA</span></div>
+        <div class="mini"><img src="img/kettle2.jpg" alt=""><b>Bouilloire digitale</b><span>7 500 DA</span></div>
+        <div class="mini"><img src="img/vacuum.jpg" alt=""><b>Aspirateur balai</b><span>21 900 DA</span></div>
+      </div>
+    </section>
+
+    <section id="order">
+      <div class="quick">
+        <div class="qbox">
+          <h2>Commandez en <span>1 minute</span>,<br>sans attendre en DM</h2>
+          <p>Choisissez votre produit, laissez votre numéro et votre wilaya : on vous appelle pour confirmer la livraison.</p>
+          <div class="steps"><div><em>1</em>Choisissez le produit</div><div><em>2</em>Remplissez nom, téléphone et wilaya</div><div><em>3</em>On confirme par téléphone</div><div><em>4</em>Livraison & paiement à la réception</div></div>
+        </div>
+        <div class="form">
+          <div class="sel"><img src="img/washer.jpg" alt=""><div><b>Machine à laver 8 kg</b><span>73 900 DA</span></div></div>
+          <div class="f2"><div class="fld"><label>Nom complet</label><div>Yanis A.</div></div><div class="fld"><label>Téléphone</label><div>05 •• •• •• ••</div></div></div>
+          <div class="f2"><div class="fld"><label>Wilaya</label><div>15 - Tizi Ouzou ▾</div></div><div class="fld"><label>Commune</label><div>Tizi Ouzou ▾</div></div></div>
+          <div class="chips"><span class="on">🚚 Livraison</span><span>🏬 Retrait au magasin</span></div>
+          <a class="btn">Confirmer la commande</a>
+          <div class="alt">ou commandez sur <b>WhatsApp</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shop">
+        <div class="map"><div class="road"></div><div class="pin">📍 CeeL Store</div></div>
+        <div class="info">
+          <h2>Venez nous voir <span>à Tizi</span></h2>
+          <div class="r"><i>📍</i><div><b>Tizi Ouzou</b><span>En face l'arrêt de bus Hesnaoua</span></div></div>
+          <div class="r"><i>🕙</i><div><b>Ouvert de 10h à 20h</b><span>Horaires du magasin</span></div></div>
+          <div class="r"><i>📸</i><div><b>@ceelstoree</b><span>Instagram & Facebook : CeeL Store</span></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span class="logo-txt">CeeL <span style="color:var(--orange)">Store</span> ⚡</span><span>Boutique d'électroménager · Tizi Ouzou · © 2026</span></div></footer>
+</body>
+</html>

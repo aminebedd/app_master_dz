@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M BOUTIQUE — أقمصة أصلية مستوردة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Reem+Kufi:wght@500;700&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F3EADB;
+    --sand-2: #E8DAC2;
+    --paper: #FBF7F0;
+    --navy: #14213D;
+    --navy-2: #1E2F55;
+    --gold: #C49A45;
+    --gold-hi: #E2BF73;
+    --ink: #1B1B1F;
+    --muted: #7D725F;
+    --line: rgba(20,33,61,0.13);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: "Cairo", sans-serif; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+  .lat { font-family: "Marcellus", serif; }
+  .kufi { font-family: "Reem Kufi", sans-serif; }
+
+  .strip { background: var(--navy); color: var(--sand); text-align: center; font-size: 13px; padding: 9px; letter-spacing: .3px; }
+  .strip b { color: var(--gold-hi); font-weight: 700; }
+
+  header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding-top: 18px; padding-bottom: 18px; }
+  header nav { display: flex; gap: 26px; font-weight: 600; font-size: 15px; color: var(--navy); }
+  header nav.l { justify-content: flex-end; }
+  .emblem { display: flex; flex-direction: column; align-items: center; }
+  .emblem .seal { width: 78px; height: 78px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--gold); }
+  .emblem .seal b { font-family: "Marcellus", serif; font-size: 40px; color: var(--gold-hi); line-height: 1; }
+  .emblem span { font-family: "Marcellus", serif; letter-spacing: 6px; font-size: 15px; color: var(--navy); margin-top: 10px; direction: ltr; }
+  .emblem small { font-family: "Marcellus", serif; letter-spacing: 4px; font-size: 9px; color: var(--gold); direction: ltr; }
+  .wa-btn { background: #1F9D55; color: #fff; padding: 9px 16px; border-radius: 30px; font-size: 14px; }
+
+  .hero { position: relative; height: 620px; border-radius: 4px; overflow: hidden; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .hero .veil { position: absolute; inset: 0; background: linear-gradient(270deg, rgba(20,33,61,.92) 0%, rgba(20,33,61,.7) 38%, rgba(20,33,61,0) 70%); }
+  .hero .txt { position: absolute; top: 0; bottom: 0; right: 0; width: 48%; padding: 0 64px; display: flex; flex-direction: column; justify-content: center; color: var(--paper); }
+  .flags { display: flex; gap: 10px; font-size: 13px; }
+  .flags span { border: 1px solid rgba(226,191,115,.5); color: var(--gold-hi); padding: 4px 12px; border-radius: 20px; }
+  .hero h1 { font-family: "Reem Kufi", sans-serif; font-weight: 700; font-size: 66px; line-height: 1.2; margin: 22px 0 14px; }
+  .hero h1 span { color: var(--gold-hi); }
+  .hero .en { font-family: "Marcellus", serif; letter-spacing: 3px; color: var(--sand-2); direction: ltr; text-align: right; font-size: 15px; }
+  .hero p { font-size: 17px; line-height: 1.9; opacity: .9; margin-top: 16px; max-width: 440px; }
+  .row { display: flex; gap: 14px; margin-top: 30px; }
+  .gbtn { background: linear-gradient(120deg, #B98D3A, var(--gold-hi)); color: var(--navy); font-weight: 800; padding: 15px 32px; border-radius: 3px; }
+  .obtn { border: 1px solid var(--gold-hi); color: var(--gold-hi); font-weight: 700; padding: 15px 28px; border-radius: 3px; }
+
+  .trust { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: -46px; position: relative; z-index: 2; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(20,33,61,.08); margin-left: 60px; margin-right: 60px; }
+  .trust div { padding: 22px; text-align: center; border-left: 1px solid var(--line); }
+  .trust div:last-child { border-left: 0; }
+  .trust i { font-style: normal; font-size: 24px; }
+  .trust b { display: block; color: var(--navy); margin-top: 4px; }
+  .trust span { font-size: 13px; color: var(--muted); }
+
+  section { padding-top: 90px; }
+  .title { text-align: center; margin-bottom: 40px; }
+  .title .lat { color: var(--gold); letter-spacing: 5px; font-size: 14px; }
+  .title h2 { font-family: "Reem Kufi", sans-serif; font-size: 42px; color: var(--navy); margin-top: 6px; }
+  .title .orn { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; color: var(--gold); }
+  .title .orn i { width: 60px; height: 1px; background: var(--gold); }
+
+  .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 34px; }
+  .tabs span { padding: 10px 24px; border: 1px solid var(--line); border-radius: 40px; font-weight: 700; color: var(--navy); background: #fff; }
+  .tabs span.on { background: var(--navy); color: var(--gold-hi); border-color: var(--navy); }
+
+  .collection { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .q { background: var(--sand); }
+  .q .ph { height: 380px; overflow: hidden; position: relative; }
+  .q .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .q .orig { position: absolute; top: 12px; right: 12px; background: var(--navy); color: var(--gold-hi); font-size: 12px; padding: 4px 10px; font-weight: 700; }
+  .q .in { padding: 16px 18px 20px; }
+  .q h3 { font-size: 18px; color: var(--navy); }
+  .q .cols { display: flex; gap: 6px; margin: 10px 0 12px; }
+  .q .cols i { width: 16px; height: 16px; border-radius: 50%; box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
+  .q .pp { display: flex; justify-content: space-between; align-items: center; }
+  .q .pp b { font-size: 20px; color: var(--navy); }
+  .q .pp s { color: var(--muted); font-size: 14px; margin-left: 8px; }
+  .q .pp a { font-weight: 800; color: var(--gold); border-bottom: 1.5px solid var(--gold); }
+
+  .fabric { display: grid; grid-template-columns: 1fr 1fr; background: var(--navy); color: var(--paper); }
+  .fabric .img { height: 560px; overflow: hidden; }
+  .fabric .img img { width: 100%; height: 100%; object-fit: cover; }
+  .fabric .txt { padding: 70px 64px; display: flex; flex-direction: column; justify-content: center; }
+  .fabric .lat { color: var(--gold-hi); letter-spacing: 4px; font-size: 14px; }
+  .fabric h2 { font-family: "Reem Kufi", sans-serif; font-size: 46px; margin: 12px 0 16px; }
+  .fabric h2 span { color: var(--gold-hi); }
+  .fabric p { opacity: .82; line-height: 2; }
+  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+  .feat div { border-top: 1px solid rgba(226,191,115,.35); padding-top: 12px; }
+  .feat b { color: var(--gold-hi); display: block; }
+  .feat span { font-size: 14px; opacity: .75; }
+
+  .builder { display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; border: 1px solid var(--line); background: #fff; }
+  .builder .view { background: var(--sand); position: relative; height: 640px; }
+  .builder .view img { width: 100%; height: 100%; object-fit: cover; }
+  .builder .view .thumbs { position: absolute; bottom: 18px; right: 18px; left: 18px; display: flex; gap: 10px; }
+  .builder .view .thumbs img { width: 70px; height: 86px; border: 2px solid #fff; }
+  .builder .view .thumbs img.on { border-color: var(--gold); }
+  .builder .cfg { padding: 48px; }
+  .cfg .lat { color: var(--gold); letter-spacing: 4px; font-size: 13px; }
+  .cfg h3 { font-family: "Reem Kufi", sans-serif; font-size: 34px; color: var(--navy); margin: 6px 0 4px; }
+  .cfg .price { display: flex; align-items: baseline; gap: 12px; margin: 10px 0 24px; }
+  .cfg .price b { font-size: 32px; color: var(--navy); }
+  .cfg .price s { color: var(--muted); }
+  .cfg .price em { font-style: normal; background: #B3261E; color: #fff; font-size: 13px; font-weight: 800; padding: 3px 10px; }
+  .step { margin-bottom: 22px; }
+  .step label { display: flex; justify-content: space-between; font-weight: 700; color: var(--navy); margin-bottom: 10px; font-size: 15px; }
+  .step label span { color: var(--muted); font-weight: 600; font-size: 13px; }
+  .swatch { display: flex; gap: 12px; }
+  .swatch i { width: 38px; height: 38px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); outline: 1px solid transparent; outline-offset: 3px; }
+  .swatch i.on { outline-color: var(--navy); }
+  .sizes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .sizes span { border: 1px solid var(--line); padding: 11px 0; text-align: center; font-weight: 700; color: var(--navy); direction: ltr; }
+  .sizes span.on { background: var(--navy); color: var(--gold-hi); border-color: var(--navy); }
+  .sizes span.x { color: #bbb; text-decoration: line-through; }
+  .qty { display: flex; align-items: center; gap: 14px; }
+  .qty span { width: 40px; height: 40px; border: 1px solid var(--line); display: grid; place-items: center; font-size: 20px; }
+  .cfg .buy { display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-top: 8px; }
+  .cfg .buy a { text-align: center; padding: 16px; font-weight: 800; }
+  .cfg .buy .gbtn { display: block; }
+  .cfg .buy .wa { background: #1F9D55; color: #fff; padding: 16px 22px; }
+  .note { margin-top: 18px; font-size: 13px; color: var(--muted); display: flex; gap: 18px; flex-wrap: wrap; }
+
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .rv { background: var(--sand); padding: 30px; position: relative; }
+  .rv::before { content: "”"; position: absolute; top: 4px; left: 20px; font-size: 90px; color: var(--gold); font-family: "Marcellus", serif; line-height: 1; opacity: .5; }
+  .rv .st { color: var(--gold); letter-spacing: 3px; }
+  .rv p { margin: 10px 0 14px; line-height: 1.9; color: var(--navy); }
+  .rv span { font-size: 14px; color: var(--muted); }
+
+  .join { margin-top: 90px; background: var(--sand-2); }
+  .join .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 50px; padding-bottom: 50px; gap: 30px; }
+  .join h2 { font-family: "Reem Kufi", sans-serif; color: var(--navy); font-size: 34px; }
+  .join p { color: var(--muted); margin-top: 6px; }
+  .join a { background: #1F9D55; color: #fff; font-weight: 800; padding: 16px 30px; border-radius: 40px; white-space: nowrap; }
+
+  footer { background: var(--navy); color: var(--sand-2); }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 36px; padding-bottom: 36px; }
+  footer .emblem { flex-direction: row; gap: 14px; }
+  footer .emblem .seal { width: 54px; height: 54px; box-shadow: 0 0 0 2px var(--gold); }
+  footer .emblem .seal b { font-size: 28px; }
+  footer .emblem span { color: var(--sand); margin: 0; }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    header .wrap { grid-template-columns: auto 1fr auto; }
+    header nav { display: none; }
+    header .m { display: block; }
+    .emblem .seal { width: 60px; height: 60px; }
+    .emblem .seal b { font-size: 30px; }
+    .hero { height: 600px; }
+    .hero img { object-position: 30% 40%; }
+    .hero .veil { background: linear-gradient(0deg, rgba(20,33,61,.96) 0%, rgba(20,33,61,.75) 55%, rgba(20,33,61,.1) 100%); }
+    .hero .txt { width: 100%; padding: 0 22px 40px; justify-content: flex-end; }
+    .hero h1 { font-size: 40px; margin: 16px 0 8px; }
+    .hero p { font-size: 15px; }
+    .row a { padding: 13px 20px; font-size: 14px; }
+    .trust { grid-template-columns: 1fr 1fr; margin: -30px 10px 0; }
+    .trust div:nth-child(2) { border-left: 0; }
+    .trust div { border-bottom: 1px solid var(--line); padding: 16px 10px; }
+    section { padding-top: 60px; }
+    .title h2 { font-size: 30px; }
+    .tabs { gap: 6px; }
+    .tabs span { padding: 8px 14px; font-size: 13px; }
+    .collection { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .q .ph { height: 240px; }
+    .q h3 { font-size: 15px; }
+    .q .pp { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .q .pp b { font-size: 16px; }
+    .fabric, .builder { grid-template-columns: 1fr; }
+    .fabric .img { height: 340px; }
+    .fabric .txt { padding: 34px 22px; }
+    .fabric h2 { font-size: 32px; }
+    .builder .view { height: 440px; }
+    .builder .cfg { padding: 28px 20px; }
+    .reviews { grid-template-columns: 1fr; }
+    .join .wrap { flex-direction: column; text-align: center; }
+    .join h2 { font-size: 26px; }
+    footer .wrap { flex-direction: column; gap: 14px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+  <div class="strip">🚚 التوصيل لـ <b>69 ولاية</b> · أقمصة أصلية مستوردة · <b>Premium Quality</b></div>
+
+  <header>
+    <div class="wrap">
+      <nav><a href="#">الرئيسية</a><a href="#shop">الكوليكسيون</a><a href="#fabric">القماش</a><a href="#order">اطلب الآن</a></nav>
+      <span class="m" style="display:none;width:24px;height:16px;border-top:2px solid var(--navy);border-bottom:2px solid var(--navy)"></span>
+      <a class="emblem" href="#"><span class="seal"><b>M</b></span><span>M BOUTIQUE</span><small>BY HAMAMA</small></a>
+      <nav class="l"><a href="#">آراء الزبائن</a><a class="wa-btn" href="#">واتساب</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <img src="ig/ig2.jpg" alt="">
+      <div class="veil"></div>
+      <div class="txt">
+        <div class="flags"><span>إماراتي</span><span>سعودي</span><span>قطري</span></div>
+        <h1>أقمصة <span>أصلية</span><br>بجودة فاخرة</h1>
+        <div class="en">AUTHENTIC & LUXURY KAMIS</div>
+        <p>أقمصة مستوردة من الخليج، قماش قطني 2027 وتفصيل راقي. اختار الموديل، اللون والمقاس، وتوصلك لـ 69 ولاية.</p>
+        <div class="row"><a class="gbtn" href="#shop">شوف الكوليكسيون</a><a class="obtn" href="#order">اطلب الآن</a></div>
+      </div>
+    </div>
+    <div class="trust">
+      <div><i>✦</i><b>مستوردة وأصلية</b><span>الإمارات · السعودية · قطر</span></div>
+      <div><i>🧵</i><b>Premium Quality</b><span>جودة فاخرة في القماش والخياطة</span></div>
+      <div><i>🚚</i><b>69 ولاية</b><span>التوصيل لكامل الوطن</span></div>
+      <div><i>💬</i><b>جروب واتساب</b><span>الجديد يوصلك قبل الناس</span></div>
+    </div>
+
+    <section id="shop">
+      <div class="title"><div class="lat">THE COLLECTION</div><h2>الكوليكسيون</h2><div class="orn"><i></i>✦<i></i></div></div>
+      <div class="tabs"><span class="on">الكل</span><span>إماراتي</span><span>سعودي</span><span>قطري</span><span>صيفي</span></div>
+      <div class="collection">
+        <div class="q"><div class="ph"><img src="ig/ig4.jpg" alt=""><span class="orig">2027</span></div><div class="in"><h3>قميص إماراتي أسود بالطربوش</h3><div class="cols"><i style="background:#111"></i><i style="background:#1E2F55"></i><i style="background:#F4F1EA"></i></div><div class="pp"><span><b><bdi>6 500</bdi> دج</b></span><a href="#order">اختار المقاس</a></div></div></div>
+        <div class="q"><div class="ph"><img src="ig/ig1.jpg" alt=""><span class="orig">إماراتي</span></div><div class="in"><h3>قميص أزرق ملكي</h3><div class="cols"><i style="background:#3E6FA8"></i><i style="background:#F4F1EA"></i><i style="background:#1E2F55"></i></div><div class="pp"><span><b><bdi>6 500</bdi> دج</b></span><a href="#order">اختار المقاس</a></div></div></div>
+        <div class="q"><div class="ph"><img src="ig/ig8.jpg" alt="" style="object-position:center 70%"><span class="orig" style="background:#B3261E;color:#fff">PROMO</span></div><div class="in"><h3>قميص صيفي قطني</h3><div class="cols"><i style="background:#F2EEE3"></i><i style="background:#C9C3A6"></i><i style="background:#AFC4DE"></i></div><div class="pp"><span><b><bdi>5 500</bdi> دج</b><s><bdi>6 500</bdi></s></span><a href="#order">اختار المقاس</a></div></div></div>
+        <div class="q"><div class="ph"><img src="ig/ig12.jpg" alt=""><span class="orig">صيفي</span></div><div class="in"><h3>قميص نص كم بألوان فاتحة</h3><div class="cols"><i style="background:#DCE6EE"></i><i style="background:#E6DCC4"></i><i style="background:#C8D8C2"></i></div><div class="pp"><span><b><bdi>5 500</bdi> دج</b></span><a href="#order">اختار المقاس</a></div></div></div>
+      </div>
+    </section>
+  </main>
+
+  <section id="fabric">
+    <div class="fabric">
+      <div class="img"><img src="ig/ig6.jpg" alt=""></div>
+      <div class="txt">
+        <div class="lat">FABRIC 2027</div>
+        <h2>قماش <span>قطني</span> 2027</h2>
+        <p>قماش خفيف يتنفس، ما يتكمشش بسهولة، ويبقى محافظ على اللون بعد الغسيل. كل قميص مخيّط بعناية، من الياقة حتى الأكمام.</p>
+        <div class="feat"><div><b>ألوان متعددة</b><span>أبيض، كحلي، رمادي، بيج…</span></div><div><b>مقاسات كاملة</b><span>من 50 حتى 62</span></div><div><b>تفصيل خليجي</b><span>إماراتي، سعودي وقطري</span></div><div><b>مناسب لكل وقت</b><span>للجمعة، الأعياد والمناسبات</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section id="order">
+      <div class="title"><div class="lat">ORDER YOUR KAMIS</div><h2>فصّل طلبيتك</h2><div class="orn"><i></i>✦<i></i></div></div>
+      <div class="builder">
+        <div class="view">
+          <img src="ig/ig5.jpg" alt="">
+          <div class="thumbs"><img class="on" src="ig/ig5.jpg" alt=""><img src="ig/ig7.jpg" alt=""><img src="ig/ig3.jpg" alt=""><img src="ig/ig10.jpg" alt=""></div>
+        </div>
+        <div class="cfg">
+          <div class="lat">EMIRATI KAMIS · 2027</div>
+          <h3>قميص إماراتي كلاسيك</h3>
+          <div class="price"><b><bdi>5 500</bdi> دج</b><s><bdi>6 500</bdi> دج</s><em>PROMO</em></div>
+          <div class="step"><label>1. اللون <span>أبيض</span></label><div class="swatch"><i class="on" style="background:#F6F3EC"></i><i style="background:#111"></i><i style="background:#1E2F55"></i><i style="background:#7B7F86"></i><i style="background:#3E6FA8"></i><i style="background:#D8CBB0"></i></div></div>
+          <div class="step"><label>2. المقاس <span>دليل المقاسات ↗</span></label><div class="sizes"><span>50</span><span>52</span><span class="on">54</span><span>56</span><span>58</span><span class="x">60</span></div></div>
+          <div class="step"><label>3. الكمية</label><div class="qty"><span>−</span><b>1</b><span>+</span></div></div>
+          <div class="buy"><a class="gbtn" href="#">اطلب الآن · الدفع عند الاستلام</a><a class="wa" href="#">واتساب</a></div>
+          <div class="note"><span>🚚 69 ولاية</span><span>📦 تغليف محترم</span><span>🔁 تبديل المقاس</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="title"><div class="lat">FEEDBACK</div><h2>آراء الزبائن</h2><div class="orn"><i></i>✦<i></i></div></div>
+      <div class="reviews">
+        <div class="rv"><div class="st">★★★★★</div><p>بلاصة لآراء الزبائن الحقيقية، من الـ "Feedback 🥰" اللي عندكم فالستوريات.</p><span>— زبون من الجزائر</span></div>
+        <div class="rv"><div class="st">★★★★★</div><p>كل رأي يتحط مع تصويرة الطرد كي يوصل، باش الزبون الجديد يثق ويطلب.</p><span>— زبون من وهران</span></div>
+        <div class="rv"><div class="st">★★★★★</div><p>وتقدرو تزيدو فيديوهات التحضير والتغليف تاع الطلبيات 📦</p><span>— زبون من سطيف</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="join"><div class="wrap"><div><h2>انضم لجروب الواتساب تاع M BOUTIQUE</h2><p>الموديلات الجديدة، البروموهات والكميات المحدودة توصلك أول واحد.</p></div><a href="#">💬 انضم للجروب</a></div></div>
+
+  <footer><div class="wrap"><span class="emblem"><span class="seal"><b>M</b></span><span>M BOUTIQUE</span></span><span>أقمصة أصلية مستوردة · Instagram @m_boutique16 · © 2026</span></div></footer>
+</body>
+</html>

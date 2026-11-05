@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   App Master DZ — design tokens
+   Dark is the default theme; [data-theme="light"] swaps the full set.
+   Components only ever use the Tailwind names mapped in @theme below.
+   ------------------------------------------------------------------ */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --canvas: #0a0c0f;
+  --surface: #111418;
+  --raised: #171b21;
+
+  --line: #22272f;
+  --line-strong: #2e343e;
+
+  --fg: #eceef1;
+  --fg-2: #9aa2ae;
+  --fg-3: #6b7380;
+
+  --primary: #3ddc97;
+  --secondary: #7aa2ff;
+  --accent: #ff6b57;
+
+  /* Category tag backgrounds (from the v0.1 Figma design system) */
+  --primary-subtle: #0f2a1f;
+  --secondary-subtle: #141d33;
+  --accent-subtle: #2e1613;
+
+  --success: #4ade80;
+  --warning: #f5b544;
+  --error: #f87171;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --canvas: #f7f7f4;
+  --surface: #ffffff;
+  --raised: #eceef1;
+
+  --line: #d9dde3;
+  --line-strong: #9aa2ae;
+
+  --fg: #0a0c0f;
+  --fg-2: #4a515c;
+  --fg-3: #6b7380;
+
+  --primary: #0b8f5b;
+  --secondary: #2f5fd9;
+  --accent: #d2402c;
+
+  --primary-subtle: #ddf5e9;
+  --secondary-subtle: #e2eaff;
+  --accent-subtle: #ffe5e0;
+
+  --success: #15803d;
+  --warning: #b45309;
+  --error: #c2362e;
+}
+
+@theme inline {
+  /* Reset Tailwind's default palette so only design tokens exist */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  /* Inverse = the text colour used as a fill (secondary button, active chip) */
+  --color-inverse: var(--fg);
+  --color-on-inverse: var(--canvas);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--canvas);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-secondary: var(--secondary);
+  --color-secondary-subtle: var(--secondary-subtle);
+  --color-accent: var(--accent);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  --font-sans: var(--font-geist-sans), "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  /* Brand name and other Latin-only text that must stay in Geist on Arabic pages */
+  --font-latin: var(--font-geist-sans), "Inter", system-ui, sans-serif;
+
+  /* Type scale — size / line-height / tracking */
+  --text-display: 5rem;
+  --text-display--line-height: 5.25rem;
+  --text-display--letter-spacing: -0.035em;
+  --text-display-sm: 2.75rem;
+  --text-display-sm--line-height: 3rem;
+  --text-display-sm--letter-spacing: -0.03em;
+
+  --text-h1: 3.5rem;
+  --text-h1--line-height: 3.75rem;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h2: 2.5rem;
+  --text-h2--line-height: 2.875rem;
+  --text-h2--letter-spacing: -0.025em;
+  /* Mobile steps for H1/H2 (spec only defines the desktop sizes) */
+  --text-h1-sm: 2.5rem;
+  --text-h1-sm--line-height: 2.875rem;
+  --text-h1-sm--letter-spacing: -0.025em;
+  --text-h2-sm: 2rem;
+  --text-h2-sm--line-height: 2.375rem;
+  --text-h2-sm--letter-spacing: -0.025em;
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.875rem;
+  --text-h3--letter-spacing: -0.015em;
+  --text-h4: 1.125rem;
+  --text-h4--line-height: 1.5rem;
+  --text-h4--letter-spacing: -0.01em;
+
+  --text-body-lg: 1.25rem;
+  --text-body-lg--line-height: 1.875rem;
+  --text-body-lg--letter-spacing: -0.005em;
+  --text-body: 1rem;
+  --text-body--line-height: 1.5rem;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.25rem;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --text-label--letter-spacing: 0.04em;
+  --text-button: 0.9375rem;
+  --text-button--line-height: 1.25rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+}
+
+/* 1200px content column: 24px side margins on mobile, centred on desktop */
+@utility shell {
+  width: 100%;
+  max-width: calc(1200px + 48px);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* 4-column mobile grid (16px gutter) → 12-column desktop grid (24px gutter) */
+@utility grid-layout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 16px;
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+}
+
+/* Section rhythm: 80px mobile, 128px desktop */
+@utility section-y {
+  padding-block: 80px;
+  @media (width >= 48rem) {
+    padding-block: 128px;
+  }
+}
+
+/* Arabic pages: IBM Plex Sans Arabic leads the stack. next/font's "Geist Fallback" face
+   (local Arial) covers every code point, so Arabic placed after Geist would render in Arial.
+   Unlayered on purpose so it overrides the font-sans / font-mono utilities. */
+[dir="rtl"] body,
+[dir="rtl"] .font-sans {
+  font-family: var(--font-arabic), var(--font-geist-sans), system-ui, sans-serif;
+}
+[dir="rtl"] .font-mono {
+  font-family: var(--font-arabic), var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--canvas);
+  }
+  body {
+    background: var(--canvas);
+    color: var(--fg);
+    /* Font family comes from the `font-sans` utility on <body> (theme vars are inlined, not emitted). */
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Letter-spacing breaks Arabic letter joining, so the type scale's tracking is off in RTL. */
+  [dir="rtl"] * {
+    letter-spacing: 0 !important;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--canvas);
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BELBAL INFORMATIQUE — لابتوبات بضمان</title>
+<link href="fonts/rubik.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060D20;
+    --blue: #2F6BFF;
+    --blue-h: #4A80FF;
+    --sky: #8DB8FF;
+    --white: #F4F7FF;
+    --muted: #93A1BD;
+    --glass: rgba(255,255,255,.06);
+    --glass-2: rgba(255,255,255,.10);
+    --stroke: rgba(255,255,255,.12);
+    --ok: #4ADE80;
+    --gold: #FBBF24;
+    --radius: 22px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--white); font-family: "Rubik", system-ui, sans-serif; line-height: 1.6; overflow-x: hidden; }
+  body.lock { overflow: hidden; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(600px 400px at 85% 0%, rgba(47,107,255,.28), transparent 70%),
+                radial-gradient(500px 500px at 0% 40%, rgba(47,107,255,.16), transparent 70%),
+                radial-gradient(600px 400px at 70% 100%, rgba(99,62,255,.14), transparent 70%); }
+  a, button { color: inherit; text-decoration: none; font: inherit; cursor: pointer; border: 0; background: none; }
+  :focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; border-radius: 10px; }
+  svg.i { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .glass { background: var(--glass); border: 1px solid var(--stroke); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); }
+
+  /* intro */
+  .intro { position: fixed; inset: 0; z-index: 100; background: var(--bg); display: grid; place-items: center; overflow: hidden; }
+  .intro::before { content: ""; position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(47,107,255,.35), transparent 65%); animation: pulse 2.4s ease-out both; }
+  .stage { position: relative; perspective: 1200px; width: 340px; height: 240px; animation: laptopOut .6s 2.1s cubic-bezier(.6,0,.4,1) forwards; }
+  .lap { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(18deg) rotateY(-28deg); animation: spin 2.2s cubic-bezier(.2,.8,.2,1) both; }
+  .base { position: absolute; left: 0; right: 0; bottom: 30px; height: 18px; border-radius: 6px 6px 14px 14px; background: linear-gradient(180deg, #3a4560, #1a2238); box-shadow: 0 30px 60px rgba(0,0,0,.5); transform: rotateX(60deg); transform-origin: bottom; }
+  .lid { position: absolute; left: 14px; right: 14px; bottom: 44px; height: 190px; border-radius: 12px; background: #11192e; border: 6px solid #232c44; transform-origin: bottom center; transform: rotateX(-88deg); animation: open 1.1s .35s cubic-bezier(.3,1.4,.5,1) forwards; overflow: hidden; }
+  .lid .scr { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, #2F6BFF, #0B1A44 70%); opacity: 0; animation: glow .6s 1.2s ease forwards; }
+  .lid .scr svg { width: 64px; height: 64px; stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; filter: drop-shadow(0 0 12px rgba(255,255,255,.8)); }
+  .name { position: absolute; text-align: center; direction: ltr; }
+  .name b { display: flex; justify-content: center; gap: 2px; font-size: 64px; font-weight: 800; letter-spacing: 6px; }
+  .name b span { display: inline-block; opacity: 0; transform: translateY(40px); animation: up .5s cubic-bezier(.2,.9,.3,1.2) forwards; }
+  .name small { display: block; font-size: 16px; letter-spacing: 12px; color: var(--sky); opacity: 0; animation: fade .6s 3.2s forwards; margin-top: 6px; }
+  .name .bar { height: 3px; width: 0; margin: 14px auto 0; background: linear-gradient(90deg, transparent, var(--blue), transparent); animation: bar .7s 3.3s forwards; }
+  .intro.done { animation: reveal .8s cubic-bezier(.7,0,.3,1) forwards; }
+  @keyframes spin { from { transform: rotateX(30deg) rotateY(-160deg) scale(.7); } to { transform: rotateX(18deg) rotateY(-28deg) scale(1); } }
+  @keyframes open { to { transform: rotateX(-12deg); } }
+  @keyframes glow { to { opacity: 1; } }
+  @keyframes pulse { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  @keyframes laptopOut { to { transform: translateY(-40px) scale(.6); opacity: 0; } }
+  @keyframes up { to { opacity: 1; transform: none; } }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes bar { to { width: 260px; } }
+  @keyframes reveal { to { clip-path: inset(0 0 100% 0); } }
+
+  header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--stroke); background: rgba(6,13,32,.6); backdrop-filter: blur(14px); }
+  header .wrap { display: flex; align-items: center; gap: 24px; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+  .brand .pw { width: 40px; height: 40px; border-radius: 12px; background: var(--blue); display: grid; place-items: center; box-shadow: 0 0 24px rgba(47,107,255,.6); }
+  .brand b { font-weight: 800; font-size: 19px; letter-spacing: .5px; line-height: 1; display: block; }
+  .brand small { font-size: 10.5px; letter-spacing: 3px; color: var(--muted); font-weight: 600; }
+  header nav { display: flex; gap: 4px; margin-inline-start: auto; }
+  header nav a { padding: 10px 14px; border-radius: 10px; color: var(--muted); font-weight: 500; transition: color .2s, background .2s; }
+  header nav a:hover { color: var(--white); background: var(--glass); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 14px; font-weight: 700; white-space: nowrap; transition: background .2s, box-shadow .2s; }
+  .btn-p { background: var(--blue); color: #fff; box-shadow: 0 8px 24px rgba(47,107,255,.35); }
+  .btn-p:hover { background: var(--blue-h); box-shadow: 0 10px 30px rgba(47,107,255,.5); }
+  .btn-g { background: var(--glass-2); border: 1px solid var(--stroke); color: var(--white); }
+  .btn-g:hover { background: rgba(255,255,255,.16); }
+
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding: 64px 0 40px; }
+  .tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 30px; font-size: 14px; font-weight: 500; }
+  .tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 10px var(--ok); }
+  .hero h1 { font-size: 58px; line-height: 1.12; font-weight: 800; margin: 20px 0 16px; letter-spacing: -.5px; }
+  .hero h1 span { background: linear-gradient(90deg, var(--sky), var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { font-size: 18px; color: var(--muted); max-width: 500px; }
+  .hero .row { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+  .visual { position: relative; }
+  .visual .frame { border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; border: 1px solid var(--stroke); box-shadow: 0 40px 100px rgba(0,0,0,.5), 0 0 80px rgba(47,107,255,.25); }
+  .visual .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+  .float { position: absolute; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 16px; font-weight: 600; font-size: 14px; animation: bob 4s ease-in-out infinite; }
+  .float .ic { width: 36px; height: 36px; border-radius: 10px; background: rgba(47,107,255,.25); color: var(--sky); display: grid; place-items: center; }
+  .float small { display: block; color: var(--muted); font-weight: 400; font-size: 12px; }
+  .f1 { top: 18px; right: -20px; }
+  .f2 { bottom: 24px; left: -24px; animation-delay: -2s; }
+  @keyframes bob { 50% { transform: translateY(-8px); } }
+
+  .trust { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .trust > div { border-radius: 18px; padding: 16px; display: flex; align-items: center; gap: 12px; }
+  .trust .ic { width: 42px; height: 42px; border-radius: 12px; background: rgba(47,107,255,.2); color: var(--sky); display: grid; place-items: center; flex-shrink: 0; }
+  .trust b { display: block; font-size: 15px; line-height: 1.3; }
+  .trust span { font-size: 13px; color: var(--muted); }
+
+  section { padding-top: 80px; }
+  .sh { margin-bottom: 22px; }
+  .sh .k { color: var(--sky); font-size: 13px; font-weight: 700; letter-spacing: 3px; text-align: right; }
+  .sh h2 { font-size: 34px; font-weight: 800; line-height: 1.25; margin-top: 4px; }
+  .sh p { color: var(--muted); }
+  .chips { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; scrollbar-width: none; }
+  .chips button { white-space: nowrap; min-height: 40px; padding: 0 16px; border-radius: 40px; background: var(--glass); border: 1px solid var(--stroke); color: var(--muted); font-weight: 500; font-size: 14px; transition: all .2s; }
+  .chips button[aria-pressed="true"] { background: var(--white); color: var(--bg); border-color: var(--white); }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .pc { border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .pc:hover { border-color: rgba(141,184,255,.45); box-shadow: 0 24px 60px rgba(0,0,0,.4), 0 0 40px rgba(47,107,255,.2); }
+  .pc .ph { position: relative; aspect-ratio: 4 / 3; overflow: hidden; margin: 10px 10px 0; border-radius: 16px; }
+  .pc .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .pc:hover .ph img { transform: scale(1.05); }
+  .lbl { position: absolute; top: 10px; right: 10px; background: rgba(6,13,32,.7); backdrop-filter: blur(8px); border: 1px solid var(--stroke); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+  .lbl.gift { right: auto; left: 10px; background: var(--gold); color: #261800; border: 0; }
+  .pc .body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+  .pc .mk { color: var(--sky); font-size: 12px; font-weight: 700; letter-spacing: 2px; }
+  .pc h3 { font-size: 21px; font-weight: 700; margin: 2px 0 12px; }
+  .specs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .specs > span { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 5px 10px; font-size: 13px; color: #D6DEF0; }
+  .specs svg.i { width: 15px; height: 15px; color: var(--sky); }
+  .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 14px; border-top: 1px solid var(--stroke); }
+  .price { font-size: 26px; font-weight: 800; line-height: 1; }
+  .price small { font-size: 13px; color: var(--muted); margin-left: 4px; font-weight: 600; }
+  .foot .acts { display: flex; gap: 8px; }
+  .foot .btn { min-height: 44px; padding: 0 14px; font-size: 15px; }
+
+  .rv { opacity: 0; transform: translateY(40px) scale(.98); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s; }
+  .rv.in { opacity: 1; transform: none; }
+  .pc.rv.in:hover { transform: translateY(-6px); }
+
+  .rvw { display: grid; grid-template-columns: 330px 1fr; gap: 20px; }
+  .rv-head { border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; background: linear-gradient(160deg, rgba(47,107,255,.45), rgba(47,107,255,.12)); border: 1px solid rgba(141,184,255,.35); }
+  .stars { display: flex; gap: 3px; color: var(--gold); }
+  .stars svg.i { fill: currentColor; stroke: none; width: 22px; height: 22px; }
+  .rv-head h3 { font-size: 26px; font-weight: 800; line-height: 1.35; margin-top: 12px; }
+  .rv-head p { color: #C9D6F5; margin-top: 8px; }
+  .shots { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none; }
+  .shot { flex: 0 0 210px; scroll-snap-align: start; border-radius: 24px; padding: 8px; }
+  .shot .scr { aspect-ratio: 9 / 16; border-radius: 18px; background: rgba(255,255,255,.04); border: 1.5px dashed rgba(255,255,255,.18); display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 13px; padding: 16px; }
+  .shot .scr b { display: block; color: var(--white); margin: 6px 0 2px; }
+  .shot .scr svg.i { width: 28px; height: 28px; color: var(--sky); }
+
+  .contact { display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 20px; }
+  .shop { border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .shop .n { color: var(--sky); font-size: 12px; font-weight: 700; letter-spacing: 2px; }
+  .shop h3 { font-size: 22px; font-weight: 800; }
+  .shop .r { display: flex; align-items: center; gap: 10px; color: #CBD5EA; }
+  .shop .r svg.i { color: var(--muted); }
+  .shop .btn { margin-top: auto; }
+  .call { border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 10px; background: linear-gradient(160deg, rgba(47,107,255,.35), rgba(47,107,255,.08)); border: 1px solid rgba(141,184,255,.3); }
+  .call h3 { font-size: 24px; font-weight: 800; }
+  .call p { color: #C3CFEA; }
+  .call .tel { font-size: 32px; font-weight: 800; text-align: right; }
+  .call .row { display: flex; gap: 10px; margin-top: auto; }
+  .call .row .btn { flex: 1; }
+  footer { margin-top: 80px; border-top: 1px solid var(--stroke); }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; min-height: 76px; color: var(--muted); font-size: 14px; gap: 12px; }
+
+  .dbg { position: fixed; inset: 0; z-index: 60; background: rgba(3,7,18,.7); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .detail { position: fixed; z-index: 61; top: 0; bottom: 0; left: 0; width: min(560px, 100%); background: #0B1531; border-right: 1px solid var(--stroke); transform: translateX(-100%); transition: transform .45s cubic-bezier(.2,.8,.2,1); overflow-y: auto; }
+  body.dopen .dbg { opacity: 1; pointer-events: auto; }
+  body.dopen .detail { transform: none; }
+  .dtop { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; background: rgba(11,21,49,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--stroke); }
+  .x { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--glass-2); }
+  .dimg { margin: 18px; border-radius: 20px; overflow: hidden; aspect-ratio: 4 / 3; border: 1px solid var(--stroke); }
+  .dimg img { width: 100%; height: 100%; object-fit: cover; }
+  .dbody { padding: 0 22px 120px; }
+  .dbody .mk { color: var(--sky); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-align: right; }
+  .dbody h2 { font-size: 30px; font-weight: 800; text-align: right; }
+  .dprice { display: flex; align-items: baseline; gap: 10px; margin: 8px 0 18px; }
+  .dprice b { font-size: 34px; font-weight: 800; }
+  .dprice span { color: var(--ok); font-size: 14px; font-weight: 600; }
+  .table { border-radius: 18px; overflow: hidden; margin-bottom: 18px; }
+  .table div { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-bottom: 1px solid var(--stroke); }
+  .table div:last-child { border-bottom: 0; }
+  .table svg.i { color: var(--sky); }
+  .table span { color: var(--muted); flex: 1; }
+  .table b { font-weight: 600; }
+  .form { border-radius: 18px; padding: 18px; }
+  .form h4 { font-size: 18px; margin-bottom: 12px; }
+  .fld { margin-bottom: 12px; }
+  .fld label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; color: #CBD5EA; }
+  .fld .in { min-height: 50px; border-radius: 14px; border: 1.5px solid var(--stroke); background: rgba(255,255,255,.04); display: flex; align-items: center; padding: 0 14px; color: var(--muted); }
+  .f2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form .btn { width: 100%; margin-top: 4px; }
+  .form .note { text-align: center; color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+  .mbar { display: none; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .rvw { grid-template-columns: 1fr; }
+    .contact { grid-template-columns: 1fr 1fr; }
+    .call { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    header .wrap { height: 64px; }
+    header nav, header .hdr-call { display: none; }
+    .stage { width: 280px; height: 200px; }
+    .lid { height: 156px; }
+    .name b { font-size: 44px; letter-spacing: 4px; }
+    .name small { letter-spacing: 8px; font-size: 13px; }
+    .hero { padding: 24px 0 24px; gap: 26px; }
+    .hero h1 { font-size: 38px; }
+    .hero p { font-size: 16px; }
+    .hero .row .btn { flex: 1; }
+    .visual { order: -1; }
+    .f1 { right: 8px; top: 10px; }
+    .f2 { left: 8px; bottom: 10px; }
+    .float { padding: 8px 12px; font-size: 13px; }
+    .float .ic { width: 30px; height: 30px; }
+    .trust { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .trust > div { padding: 12px; gap: 10px; min-width: 0; }
+    .trust .ic { width: 36px; height: 36px; }
+    .trust b { font-size: 14px; }
+    .trust span { font-size: 12px; }
+    section { padding-top: 56px; }
+    .sh h2 { font-size: 26px; }
+    .grid { grid-template-columns: 1fr; gap: 18px; }
+    .foot { flex-wrap: wrap; }
+    .foot .price { width: 100%; }
+    .foot .acts { width: 100%; }
+    .foot .acts .btn { flex: 1; min-height: 48px; }
+    .shot { flex-basis: 62%; }
+    .contact { grid-template-columns: 1fr; }
+    footer { margin-bottom: 76px; }
+    footer .wrap { flex-direction: column; justify-content: center; text-align: center; padding: 16px; }
+    .mbar { display: flex; gap: 10px; position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(6,13,32,.85); backdrop-filter: blur(14px); border-top: 1px solid var(--stroke); }
+    .mbar .btn { flex: 1; }
+    .detail { width: 100%; border-right: 0; transform: translateY(100%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before { animation-duration: .01s !important; animation-delay: 0s !important; transition: none !important; }
+    .rv { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body class="lock">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.3 6.8a8 8 0 1 0 11.4 0"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M10 17h4V5H2v12h3"/><path d="M14 8h4l4 4v5h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9 4.5 4h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v4a6 6 0 0 1-12 0V8z"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+    <symbol id="i-ram" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 11v2M10 11v2M14 11v2M18 11v2"/></symbol>
+    <symbol id="i-disk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 11v2M6 10v4M10 10v4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></symbol>
+  </svg>
+
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="stage">
+      <div class="lap">
+        <div class="lid"><div class="scr"><svg viewBox="0 0 24 24"><use href="#i-power"/></svg></div></div>
+        <div class="base"></div>
+      </div>
+    </div>
+    <div class="name">
+      <b><span style="animation-delay:2.4s">B</span><span style="animation-delay:2.47s">E</span><span style="animation-delay:2.54s">L</span><span style="animation-delay:2.61s">B</span><span style="animation-delay:2.68s">A</span><span style="animation-delay:2.75s">L</span></b>
+      <small>INFORMATIQUE</small>
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap">
+      <a class="brand" href="#" aria-label="BELBAL INFORMATIQUE"><span class="pw"><svg class="i" style="width:22px;height:22px;stroke-width:2.6"><use href="#i-power"/></svg></span><span><b>BELBAL</b><small>INFORMATIQUE</small></span></a>
+      <nav aria-label="القائمة"><a href="#pcs">اللابتوبات</a><a href="#reviews">آراء الزبائن</a><a href="#contact">المحلات</a></nav>
+      <a class="btn btn-p hdr-call" href="tel:0665868025"><svg class="i"><use href="#i-phone"/></svg><span class="ltr">0665 86 80 25</span></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="rv">
+        <span class="tag glass"><i></i>محلّين · باب الزوار و بريكة</span>
+        <h1>لابتوبات مجرّبة<br><span>بضمان 3 أشهر</span></h1>
+        <p>اختار اللابتوب، شوف كل التفاصيل والسعر، واطلب في دقيقة. التوصيل لجميع الولايات.</p>
+        <div class="row"><a class="btn btn-p" href="#pcs"><svg class="i"><use href="#i-cart"/></svg>شوف اللابتوبات</a><a class="btn btn-g" href="#contact"><svg class="i"><use href="#i-store"/></svg>المحلات</a></div>
+      </div>
+      <div class="visual rv">
+        <div class="frame"><img src="vid/hero.jpg" alt="Lenovo ThinkPad"></div>
+        <div class="float glass f1"><span class="ic"><svg class="i"><use href="#i-shield"/></svg></span><div>ضمان 3 أشهر<small>بشهادة ضمان</small></div></div>
+        <div class="float glass f2"><span class="ic"><svg class="i"><use href="#i-truck"/></svg></span><div>توصيل 69 ولاية<small>لكامل الوطن</small></div></div>
+      </div>
+    </div>
+    <div class="trust">
+      <div class="glass rv"><span class="ic"><svg class="i"><use href="#i-shield"/></svg></span><div><b>ضمان 3 أشهر</b><span>بشهادة ضمان</span></div></div>
+      <div class="glass rv"><span class="ic"><svg class="i"><use href="#i-truck"/></svg></span><div><b>توصيل 69 ولاية</b><span>لكامل الوطن</span></div></div>
+      <div class="glass rv"><span class="ic"><svg class="i"><use href="#i-store"/></svg></span><div><b>محلّين</b><span>الجزائر · باتنة</span></div></div>
+      <div class="glass rv"><span class="ic"><svg class="i"><use href="#i-plug"/></svg></span><div><b>شاحن أصلي</b><span>مع كل لابتوب</span></div></div>
+    </div>
+
+    <section id="pcs">
+      <div class="sh rv"><div class="k"><span class="ltr">LAPTOPS</span></div><h2>اللابتوبات المتوفرة</h2><p>كليكي على أي لابتوب باش تشوف كل التفاصيل</p></div>
+      <div class="chips rv" role="group" aria-label="تصفية"><button aria-pressed="true">الكل</button><button aria-pressed="false">Lenovo</button><button aria-pressed="false">Dell</button><button aria-pressed="false">HP</button><button aria-pressed="false">Core i5</button><button aria-pressed="false"><span class="ltr">16 Go RAM</span></button></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section id="reviews">
+      <div class="sh rv"><div class="k"><span class="ltr">REVIEWS</span></div><h2>آراء الزبائن</h2><p>رسائل الناس اللي شراو من عندنا</p></div>
+      <div class="rvw">
+        <div class="rv-head rv">
+          <div><div class="stars" aria-label="5 نجوم"><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg></div><h3>هنا تجدون آراء الناس التي تعاملت معنا</h3><p>سكرين شوت من الميساجات والطلبيات اللي وصلت.</p></div>
+          <a class="btn btn-g" href="#"><svg class="i"><use href="#i-insta"/></svg>شوف الكل على إنستغرام</a>
+        </div>
+        <div class="shots rv">
+          <div class="shot glass"><div class="scr"><div><svg class="i"><use href="#i-image"/></svg><b>سكرين شوت 1</b>من «آراء الزبائن»</div></div></div>
+          <div class="shot glass"><div class="scr"><div><svg class="i"><use href="#i-image"/></svg><b>سكرين شوت 2</b>من «الزبائن»</div></div></div>
+          <div class="shot glass"><div class="scr"><div><svg class="i"><use href="#i-image"/></svg><b>سكرين شوت 3</b>من «طلبيات»</div></div></div>
+          <div class="shot glass"><div class="scr"><div><svg class="i"><use href="#i-image"/></svg><b>سكرين شوت 4</b>من «طلبيات»</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sh rv"><div class="k"><span class="ltr">CONTACT</span></div><h2>المحلات والتواصل</h2><p>زورونا ولا اطلبو، التوصيل لجميع الولايات</p></div>
+      <div class="contact">
+        <div class="shop glass rv"><span class="n"><span class="ltr">BOUTIQUE 1</span></span><h3>باب الزوار · الجزائر</h3><div class="r"><svg class="i"><use href="#i-pin"/></svg><span class="ltr">2068 Bab Ezzouar</span></div><div class="r"><svg class="i"><use href="#i-shield"/></svg>البيع بشهادة الضمان 3 أشهر</div><a class="btn btn-g" href="#"><svg class="i"><use href="#i-pin"/></svg>افتح في الخريطة</a></div>
+        <div class="shop glass rv"><span class="n"><span class="ltr">BOUTIQUE 2</span></span><h3>بريكة · باتنة</h3><div class="r"><svg class="i"><use href="#i-pin"/></svg><span class="ltr">Barika, Batna</span></div><div class="r"><svg class="i"><use href="#i-phone"/></svg><span class="ltr">0665 86 80 25</span></div><a class="btn btn-g" href="#"><svg class="i"><use href="#i-pin"/></svg>افتح في الخريطة</a></div>
+        <div class="call rv"><h3>عندك سؤال على لابتوب؟</h3><p>عيطلنا ولا ابعثلنا ميساج ونجاوبوك.</p><div class="tel"><span class="ltr">0665 86 80 25</span></div><div class="row"><a class="btn btn-p" href="tel:0665868025"><svg class="i"><use href="#i-phone"/></svg>اتصل</a><a class="btn btn-g" href="#"><svg class="i"><use href="#i-insta"/></svg>إنستغرام</a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span class="brand"><span class="pw" style="width:32px;height:32px;border-radius:9px"><svg class="i" style="width:18px;height:18px;stroke-width:2.6"><use href="#i-power"/></svg></span><b style="font-size:16px">BELBAL</b></span><span>باب الزوار · بريكة · التوصيل لـ 69 ولاية · @belbal_informatique</span></div></footer>
+
+  <div class="mbar"><a class="btn btn-g" href="tel:0665868025"><svg class="i"><use href="#i-phone"/></svg>اتصل</a><a class="btn btn-p" href="#pcs"><svg class="i"><use href="#i-cart"/></svg>اطلب لابتوب</a></div>
+
+  <div class="dbg" id="dbg"></div>
+  <aside class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="d-name">
+    <div class="dtop"><b>تفاصيل اللابتوب</b><button class="x" id="dclose" aria-label="إغلاق"><svg class="i"><use href="#i-x"/></svg></button></div>
+    <div class="dimg"><img id="d-img" src="" alt=""></div>
+    <div class="dbody">
+      <div class="mk"><span class="ltr" id="d-mk"></span></div>
+      <h2><span class="ltr" id="d-name"></span></h2>
+      <div class="dprice"><b class="ltr" id="d-price"></b><span>متوفر في المحل</span></div>
+      <div class="table glass" id="d-table"></div>
+      <div class="form glass">
+        <h4>اطلب هذا اللابتوب</h4>
+        <div class="fld"><label>الاسم واللقب</label><div class="in">مثال: ياسين بلقاسم</div></div>
+        <div class="f2"><div class="fld"><label>رقم الهاتف</label><div class="in"><span class="ltr">06 •• •• •• ••</span></div></div><div class="fld"><label>الولاية</label><div class="in">اختار الولاية ▾</div></div></div>
+        <a class="btn btn-p" href="#"><svg class="i"><use href="#i-check"/></svg>أكّد الطلبية</a>
+        <div class="note">نعيطولك باش نأكدو قبل ما نبعثو · الدفع عند الاستلام</div>
+      </div>
+    </div>
+  </aside>
+
+<script>
+  const P = [
+    { mk: "LENOVO", name: "ThinkPad T14", img: "ig/ig9.jpg", pos: "center 48%", cpu: "Core i5 11ème", ram: "16 Go", ssd: "256 Go SSD", scr: '14" FHD', bat: "3h", price: "72 000", lbl: "الأكثر طلباً" },
+    { mk: "DELL", name: "Latitude 5330", img: "ig/ig12.jpg", cpu: "Core i5 12ème", ram: "16 Go", ssd: "256 Go SSD", scr: '13.3" FHD', bat: "3h", price: "78 000", lbl: "جديد", gift: "+ Cartable هدية" },
+    { mk: "LENOVO", name: "ThinkPad T14s", img: "ig/ig11.jpg", cpu: "Core i5 10ème", ram: "16 Go", ssd: "256 Go SSD", scr: '14" FHD', bat: "3h", price: "67 000" },
+    { mk: "DELL", name: "Latitude 7400 Carbon", img: "ig/ig8.jpg", pos: "center 80%", cpu: "Core i7 8ème", ram: "8 Go", ssd: "256 Go NVMe", scr: '14" FHD', bat: "+3h", price: "59 000", lbl: "Core i7" },
+    { mk: "HP", name: "ProBook 430 G8", img: "ig/ig5.jpg", pos: "center 78%", cpu: "Core i3 11ème", ram: "8 Go", ssd: "256 Go SSD", scr: '13.3"', price: "58 000" },
+    { mk: "LENOVO", name: "ThinkPad L14", img: "ig/ig6.jpg", pos: "center 78%", cpu: "Ryzen 3 Pro 4450U", ram: "8 Go", ssd: "256 Go SSD", scr: '14" FHD', price: "52 500", lbl: "أحسن سعر" },
+  ];
+  const ic = (id) => `<svg class="i"><use href="#i-${id}"/></svg>`;
+  const grid = document.getElementById("grid");
+  grid.innerHTML = P.map((p, i) => `
+    <article class="pc glass rv" style="transition-delay:${(i % 3) * 90}ms">
+      <div class="ph"><img src="${p.img}" alt="${p.name}" style="object-position:${p.pos || "center 75%"}">${p.lbl ? `<span class="lbl">${p.lbl}</span>` : ""}${p.gift ? `<span class="lbl gift">${p.gift}</span>` : ""}</div>
+      <div class="body">
+        <div class="mk"><span class="ltr">${p.mk}</span></div>
+        <h3><span class="ltr">${p.name}</span></h3>
+        <div class="specs"><span>${ic("cpu")}<span class="ltr">${p.cpu.replace("Core ", "")}</span></span><span>${ic("ram")}<span class="ltr">${p.ram}</span></span><span>${ic("disk")}<span class="ltr">${p.ssd.replace(" Go", "")}</span></span><span>${ic("screen")}<span class="ltr">${p.scr}</span></span></div>
+        <div class="foot"><div class="price ltr">${p.price}<small>DA</small></div><div class="acts"><button class="btn btn-g" data-i="${i}">${ic("eye")}التفاصيل</button><button class="btn btn-p" data-i="${i}">${ic("cart")}اطلب</button></div></div>
+      </div>
+    </article>`).join("");
+
+  const open = (i) => {
+    const p = P[i];
+    const img = document.getElementById("d-img");
+    img.src = p.img; img.alt = p.name; img.style.objectPosition = p.pos || "center 75%";
+    document.getElementById("d-mk").textContent = p.mk;
+    document.getElementById("d-name").textContent = p.name;
+    document.getElementById("d-price").textContent = p.price + " DA";
+    const rows = [["cpu", "المعالج", p.cpu], ["ram", "الرام", p.ram], ["disk", "التخزين", p.ssd], ["screen", "الشاشة", p.scr], p.bat && ["battery", "البطارية", p.bat], ["plug", "الشاحن", "أصلي"], ["shield", "الضمان", "3 أشهر"]].filter(Boolean);
+    document.getElementById("d-table").innerHTML = rows.map(([k, l, v]) => `<div>${ic(k)}<span>${l}</span><b class="ltr">${v}</b></div>`).join("");
+    document.getElementById("detail").scrollTop = 0;
+    document.body.classList.add("dopen");
+  };
+  const close = () => document.body.classList.remove("dopen");
+  grid.addEventListener("click", (e) => { const b = e.target.closest("[data-i]"); if (b) open(+b.dataset.i); });
+  document.getElementById("dclose").onclick = close;
+  document.getElementById("dbg").onclick = close;
+  document.addEventListener("keydown", (e) => e.key === "Escape" && close());
+  document.querySelectorAll(".chips button").forEach((b) => b.addEventListener("click", () => document.querySelectorAll(".chips button").forEach((x) => x.setAttribute("aria-pressed", x === b))));
+
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.05, rootMargin: "0px 0px -5% 0px" });
+  const startReveal = () => document.querySelectorAll(".rv").forEach((el) => { if (el.getBoundingClientRect().top < innerHeight * 0.95) el.classList.add("in"); else io.observe(el); });
+
+  // Intro: the laptop spins and opens, the name appears, then the site slides in.
+  const intro = document.getElementById("intro");
+  const h = location.hash;
+  const skip = h === "#nointro" || h.startsWith("#detail") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finish = () => { intro.remove(); document.body.classList.remove("lock"); };
+  if (skip) { finish(); document.querySelectorAll(".rv").forEach((el) => el.classList.add("in")); }
+  else {
+    setTimeout(() => { intro.classList.add("done"); startReveal(); }, 4100);
+    setTimeout(finish, 4900);
+  }
+  const m = h.match(/#detail=(\d)/);
+  if (m) open(+m[1]);
+</script>
+</body>
+</html>

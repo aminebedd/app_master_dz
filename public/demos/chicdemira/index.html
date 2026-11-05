@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chic de Mira — بوتيك للنساء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Great+Vibes&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0B0B0B;
+    --ink: #151412;
+    --card: #1C1A17;
+    --gold: #C9A24B;
+    --gold-hi: #E8C979;
+    --cream: #F6F0E4;
+    --muted: #A49A86;
+    --line: rgba(201,162,75,0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--black); color: var(--cream); font-family: "Cairo", sans-serif; }
+  a { color: inherit; text-decoration: none; }
+  .gold { background: linear-gradient(120deg, #A8812F, var(--gold-hi) 45%, #B8913C 70%, var(--gold-hi)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .topbar { background: linear-gradient(90deg, #A8812F, var(--gold-hi), #A8812F); color: var(--black); text-align: center; font-weight: 700; font-size: 14px; padding: 8px; }
+  header { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(11,11,11,0.92); backdrop-filter: blur(8px); z-index: 5; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 78px; }
+  .logo { font-family: "Great Vibes", cursive; font-size: 42px; }
+  nav { display: flex; gap: 30px; font-weight: 600; color: var(--muted); }
+  nav a:first-child { color: var(--gold-hi); }
+  .icons { display: flex; gap: 18px; align-items: center; }
+  .cart { position: relative; width: 26px; height: 26px; border: 2px solid var(--gold); border-radius: 6px 6px 8px 8px; }
+  .cart::after { content: "2"; position: absolute; top: -10px; left: -10px; background: var(--gold); color: var(--black); font-size: 12px; font-weight: 900; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; }
+  .burger { display: none; width: 26px; height: 18px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); position: relative; }
+  .burger::after { content: ""; position: absolute; inset: 6px 0 auto; border-top: 2px solid var(--gold); }
+
+  .hero { position: relative; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; padding: 70px 0 80px; }
+  .hero h1 { font-size: 64px; line-height: 1.15; font-weight: 900; margin: 14px 0 18px; }
+  .kicker { font-family: "Playfair Display", serif; letter-spacing: 6px; color: var(--gold); font-size: 14px; }
+  .hero p { color: var(--muted); font-size: 19px; line-height: 1.8; max-width: 480px; }
+  .btns { display: flex; gap: 14px; margin-top: 30px; }
+  .btn { padding: 15px 34px; border-radius: 40px; font-weight: 800; font-size: 17px; }
+  .btn-gold { background: linear-gradient(120deg, #B8913C, var(--gold-hi)); color: var(--black); box-shadow: 0 10px 30px rgba(201,162,75,0.3); }
+  .btn-line { border: 1.5px solid var(--gold); color: var(--gold-hi); }
+  .hero-img { position: relative; height: 560px; border-radius: 260px 260px 24px 24px; overflow: hidden; border: 1.5px solid var(--line); }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .hero-img .badge { position: absolute; bottom: 22px; right: 22px; background: rgba(11,11,11,0.8); border: 1px solid var(--line); padding: 10px 18px; border-radius: 14px; font-weight: 700; }
+  .stats { display: flex; gap: 40px; margin-top: 40px; }
+  .stats b { display: block; font-size: 28px; font-family: "Playfair Display", serif; }
+  .stats span { color: var(--muted); font-size: 14px; }
+
+  .perks { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .perks .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .perk { padding: 26px 10px; text-align: center; border-left: 1px solid var(--line); }
+  .perk:last-child { border-left: 0; }
+  .perk i { font-style: normal; font-size: 26px; display: block; margin-bottom: 6px; }
+  .perk b { display: block; }
+  .perk span { color: var(--muted); font-size: 14px; }
+
+  section { padding: 80px 0 0; }
+  .sec-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 30px; }
+  .sec-head h2 { font-size: 38px; font-weight: 900; }
+  .sec-head a { color: var(--gold); font-weight: 700; }
+
+  .cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .cat { position: relative; height: 230px; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); }
+  .cat img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+  .cat b { position: absolute; bottom: 18px; right: 20px; font-size: 24px; }
+  .cat span { position: absolute; bottom: 22px; left: 20px; color: var(--gold-hi); font-size: 14px; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .prod { background: var(--card); border-radius: 22px; overflow: hidden; border: 1px solid var(--line); }
+  .prod .ph { position: relative; height: 380px; }
+  .prod .ph img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+  .tag { position: absolute; top: 14px; right: 14px; background: var(--gold); color: var(--black); font-weight: 800; font-size: 13px; padding: 4px 12px; border-radius: 20px; }
+  .prod .info { padding: 18px 20px 20px; }
+  .prod h3 { font-size: 20px; }
+  .sizes { display: flex; gap: 6px; margin: 10px 0 14px; }
+  .sizes span { border: 1px solid var(--line); color: var(--muted); font-size: 12px; padding: 2px 9px; border-radius: 8px; font-family: "Playfair Display", serif; }
+  .row { display: flex; justify-content: space-between; align-items: center; }
+  .price { font-size: 22px; font-weight: 900; color: var(--gold-hi); }
+  .price s { color: var(--muted); font-size: 15px; font-weight: 400; margin-right: 8px; }
+  .add { background: var(--gold); color: var(--black); font-weight: 800; padding: 9px 20px; border-radius: 30px; font-size: 15px; }
+
+  .order { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: 28px; overflow: hidden; background: var(--ink); }
+  .order .side { padding: 50px; background: radial-gradient(circle at 80% 0%, rgba(201,162,75,0.18), transparent 60%); }
+  .order h2 { font-size: 36px; font-weight: 900; margin-bottom: 10px; }
+  .order .side p { color: var(--muted); line-height: 1.9; }
+  .steps { margin-top: 26px; display: grid; gap: 14px; }
+  .steps div { display: flex; gap: 14px; align-items: center; }
+  .steps em { font-style: normal; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--gold); display: grid; place-items: center; color: var(--gold-hi); font-weight: 800; }
+  form { padding: 50px; display: grid; gap: 14px; }
+  label { font-size: 14px; color: var(--muted); }
+  .field { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; color: var(--cream); font-size: 16px; font-family: inherit; width: 100%; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .total { display: flex; justify-content: space-between; border-top: 1px dashed var(--line); padding-top: 14px; font-weight: 700; }
+  .total b { color: var(--gold-hi); font-size: 22px; }
+  form .btn { text-align: center; border: 0; font-family: inherit; cursor: pointer; }
+
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .rev { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
+  .stars { color: var(--gold-hi); letter-spacing: 3px; }
+  .rev p { margin: 12px 0; line-height: 1.8; }
+  .rev span { color: var(--muted); font-size: 14px; }
+
+  .visit { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  .map { border-radius: 24px; border: 1px solid var(--line); background:
+      linear-gradient(rgba(201,162,75,0.08) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, rgba(201,162,75,0.08) 1px, transparent 1px) 0 0/40px 40px, var(--ink);
+      position: relative; min-height: 260px; }
+  .pin { position: absolute; top: 45%; left: 50%; width: 34px; height: 34px; background: var(--gold); border-radius: 50% 50% 50% 0; transform: translate(-50%, -50%) rotate(-45deg); box-shadow: 0 0 0 14px rgba(201,162,75,0.15); }
+  .visit .box { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 36px; }
+  .visit .box h2 { font-size: 30px; margin-bottom: 14px; }
+  .visit .box p { color: var(--muted); line-height: 2; }
+
+  footer { margin-top: 90px; border-top: 1px solid var(--line); padding: 40px 0; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; color: var(--muted); }
+  .wa { position: fixed; bottom: 26px; left: 26px; width: 62px; height: 62px; border-radius: 50%; background: #25D366; display: grid; place-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+  @media (max-width: 760px) {
+    nav { display: none; }
+    .burger { display: block; }
+    header .wrap { height: 64px; }
+    .logo { font-size: 34px; }
+    .hero { grid-template-columns: 1fr; padding: 28px 0 40px; gap: 26px; }
+    .hero-img { order: -1; height: 440px; border-radius: 200px 200px 22px 22px; }
+    .hero h1 { font-size: 40px; }
+    .hero p { font-size: 16px; }
+    .btns .btn { padding: 13px 24px; font-size: 15px; }
+    .stats { gap: 26px; margin-top: 26px; }
+    .perks .wrap { grid-template-columns: 1fr 1fr; }
+    .perk:nth-child(2) { border-left: 0; }
+    .perk { border-bottom: 1px solid var(--line); }
+    section { padding-top: 50px; }
+    .sec-head h2 { font-size: 28px; }
+    .cats { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cat { height: 170px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .prod .ph { height: 240px; }
+    .prod .info { padding: 12px; }
+    .prod h3 { font-size: 15px; }
+    .sizes { display: none; }
+    .row { flex-direction: column; align-items: stretch; gap: 8px; }
+    .price { font-size: 17px; }
+    .add { text-align: center; padding: 7px; font-size: 14px; }
+    .order, .visit, .reviews { grid-template-columns: 1fr; }
+    .order .side, form { padding: 26px; }
+    footer .wrap { flex-direction: column; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+  <div class="topbar">🚚 التوصيل لـ 69 ولاية · الدفع عند الاستلام</div>
+  <header>
+    <div class="wrap">
+      <a class="logo gold" href="#">Chic de Mira</a>
+      <nav><a href="#">الرئيسية</a><a href="#">عبايات</a><a href="#">فساتين</a><a href="#">أطقم</a><a href="#">معاطف</a><a href="#">آراء الزبونات</a></nav>
+      <div class="icons"><span class="cart"></span><span class="burger"></span></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div>
+        <div class="kicker">NOUVELLE COLLECTION</div>
+        <h1>أناقتك <span class="gold">تبدا</span><br>من هنا</h1>
+        <p>بوتيك Chic de Mira للنساء: عبايات، فساتين وأطقم مختارة بعناية. اطلبي من الموقع في دقيقة، وتوصلك لباب الدار.</p>
+        <div class="btns"><a class="btn btn-gold" href="#shop">تسوّقي الآن</a><a class="btn btn-line" href="#order">كيفاش نطلب؟</a></div>
+        <div class="stats">
+          <div><b class="gold">187K</b><span>متابعة على إنستغرام</span></div>
+          <div><b class="gold">69</b><span>ولاية توصيل</span></div>
+          <div><b class="gold">COD</b><span>الدفع عند الاستلام</span></div>
+        </div>
+      </div>
+      <div class="hero-img"><img src="ig/ig5.jpg" alt=""><div class="badge">✨ وصل جديد</div></div>
+    </div>
+  </main>
+
+  <div class="perks">
+    <div class="wrap">
+      <div class="perk"><i>🚚</i><b>توصيل 69 ولاية</b><span>للدار ولا للمكتب</span></div>
+      <div class="perk"><i>💵</i><b>الدفع عند الاستلام</b><span>خلّصي كي توصلك</span></div>
+      <div class="perk"><i>🔁</i><b>تبديل المقاس</b><span>حسب شروط البوتيك</span></div>
+      <div class="perk"><i>💬</i><b>خدمة واتساب</b><span>نجاوبوك بسرعة</span></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section>
+      <div class="sec-head"><h2>تسوّقي حسب <span class="gold">القسم</span></h2></div>
+      <div class="cats">
+        <a class="cat"><img src="ig/ig4.jpg" alt=""><b>عبايات</b><span>Abayas</span></a>
+        <a class="cat"><img src="ig/ig12.jpg" alt=""><b>فساتين</b><span>Robes</span></a>
+        <a class="cat"><img src="ig/ig7.jpg" alt=""><b>أطقم</b><span>Ensembles</span></a>
+        <a class="cat"><img src="ig/ig10.jpg" alt=""><b>معاطف</b><span>Manteaux</span></a>
+      </div>
+    </section>
+
+    <section id="shop">
+      <div class="sec-head"><h2>الأكثر <span class="gold">طلباً</span></h2><a href="#">شوفي الكل ←</a></div>
+      <div class="grid">
+        <div class="prod"><div class="ph"><img src="ig/ig6.jpg" alt=""><span class="tag">جديد</span></div><div class="info"><h3>عباية سوداء كلاسيك</h3><div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div><div class="row"><span class="price"><bdi>6 900</bdi> دج</span><a class="add">اطلبي</a></div></div></div>
+        <div class="prod"><div class="ph"><img src="ig/ig8.jpg" alt=""><span class="tag">-15%</span></div><div class="info"><h3>فستان أزرق بالحزام</h3><div class="sizes"><span>S</span><span>M</span><span>L</span></div><div class="row"><span class="price"><bdi>5 500</bdi> دج<s><bdi>6 500</bdi></s></span><a class="add">اطلبي</a></div></div></div>
+        <div class="prod"><div class="ph"><img src="ig/ig11.jpg" alt=""></div><div class="info"><h3>فستان بيج بالكشكش</h3><div class="sizes"><span>M</span><span>L</span><span>XL</span></div><div class="row"><span class="price"><bdi>7 200</bdi> دج</span><a class="add">اطلبي</a></div></div></div>
+        <div class="prod"><div class="ph"><img src="ig/ig9.jpg" alt=""></div><div class="info"><h3>فستان كاروهات</h3><div class="sizes"><span>TU</span></div><div class="row"><span class="price"><bdi>1 800</bdi> دج</span><a class="add">اطلبي</a></div></div></div>
+        <div class="prod"><div class="ph"><img src="ig/ig7.jpg" alt=""><span class="tag">طقم</span></div><div class="info"><h3>طقم أخضر سروال وتونيك</h3><div class="sizes"><span>S</span><span>M</span><span>L</span></div><div class="row"><span class="price"><bdi>4 900</bdi> دج</span><a class="add">اطلبي</a></div></div></div>
+        <div class="prod"><div class="ph"><img src="ig/ig4.jpg" alt=""></div><div class="info"><h3>عباية بيج بالأزرار</h3><div class="sizes"><span>M</span><span>L</span><span>XL</span></div><div class="row"><span class="price"><bdi>5 900</bdi> دج</span><a class="add">اطلبي</a></div></div></div>
+      </div>
+    </section>
+
+    <section id="order">
+      <div class="order">
+        <div class="side">
+          <div class="kicker">COMMANDE</div>
+          <h2>اطلبي في <span class="gold">دقيقة</span></h2>
+          <p>بلا ما تستناي الرد في الميساجات: عمّري الفورمولار، ونعيطولك باش نأكدو الطلبية.</p>
+          <div class="steps">
+            <div><em>1</em>اختاري الموديل والمقاس</div>
+            <div><em>2</em>عمّري الاسم، الرقم والولاية</div>
+            <div><em>3</em>نأكدو معاك بالتيليفون</div>
+            <div><em>4</em>توصلك وتخلّصي عند الاستلام</div>
+          </div>
+        </div>
+        <form onsubmit="return false">
+          <label>الموديل</label>
+          <div class="field">عباية سوداء كلاسيك · M</div>
+          <div class="two"><div><label>الاسم واللقب</label><div class="field">أمينة ب.</div></div><div><label>رقم الهاتف</label><div class="field" dir="ltr" style="text-align:right">05 •• •• •• ••</div></div></div>
+          <div class="two"><div><label>الولاية</label><div class="field">16 - الجزائر ▾</div></div><div><label>البلدية</label><div class="field">باب الزوار ▾</div></div></div>
+          <div class="two"><div class="field" style="border-color:var(--gold)">🏠 للدار</div><div class="field">🏢 للمكتب</div></div>
+          <div class="total"><span>المجموع (مع التوصيل)</span><b><bdi>7 500</bdi> دج</b></div>
+          <button class="btn btn-gold">تأكيد الطلبية</button>
+        </form>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>آراء <span class="gold">الزبونات</span></h2></div>
+      <div class="reviews">
+        <div class="rev"><div class="stars">★★★★★</div><p>«مكان لآراء زبوناتك الحقيقية، من الـ Feedback اللي عندك فالستوريات.»</p><span>— زبونة من وهران</span></div>
+        <div class="rev"><div class="stars">★★★★★</div><p>«كل رأي يتحط بالاسم والولاية، باش اللي جديدة تثق وتطلب.»</p><span>— زبونة من سطيف</span></div>
+        <div class="rev"><div class="stars">★★★★★</div><p>«تقدري تزيدي تصاور الزبونات بالعبايات تاعك.»</p><span>— زبونة من الجزائر</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="visit">
+        <div class="box">
+          <div class="kicker">BOUTIQUE</div>
+          <h2>زورينا في <span class="gold">البوتيك</span></h2>
+          <p>📍 الجزائر العاصمة · Lido<br>🕘 من السبت للخميس · 10:00 – 19:00<br>📞 واتساب: <bdi>+213 795 63 62 07</bdi></p>
+          <div class="btns"><a class="btn btn-line">افتحي في الخريطة</a></div>
+        </div>
+        <div class="map"><div class="pin"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span class="logo gold">Chic de Mira</span><span>© 2026 Chic de Mira · Instagram @chicde_mira</span></div></footer>
+  <a class="wa"><svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a>
+</body>
+</html>

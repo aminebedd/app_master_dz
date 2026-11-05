@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collection by HR — فساتين نسائية</title>
+<link href="fonts/rubik.css" rel="stylesheet">
+<link href="fonts/playfair.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F4;
+    --card: #FFFFFF;
+    --ink: #141414;
+    --muted: #7A716B;
+    --red: #B3122E;
+    --red-h: #96102A;
+    --red-soft: #FBEDEF;
+    --line: #ECE5DF;
+    --radius: 20px;
+    --shadow: 0 1px 2px rgba(20,20,20,.04), 0 10px 30px rgba(20,20,20,.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: "Rubik", system-ui, sans-serif; line-height: 1.6; overflow-x: hidden; }
+  a, button { color: inherit; text-decoration: none; font: inherit; cursor: pointer; border: 0; background: none; }
+  :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; border-radius: 8px; }
+  svg.i { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+  .serif { font-family: "Playfair Display", Georgia, serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  .strip { background: var(--ink); color: #f3ece7; font-size: 13px; text-align: center; padding: 9px 12px; }
+  .strip b { color: #ff8a9d; font-weight: 600; }
+  header { position: sticky; top: 0; z-index: 20; background: rgba(250,247,244,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; gap: 24px; height: 72px; }
+  .logo { direction: ltr; line-height: 1; }
+  .logo b { font-family: "Playfair Display", serif; font-weight: 600; font-size: 26px; }
+  .logo b span { color: var(--red); font-style: italic; font-weight: 500; }
+  .logo small { display: block; font-size: 10px; letter-spacing: 4px; color: var(--muted); margin-top: 3px; }
+  header nav { display: flex; gap: 4px; margin-inline-start: auto; }
+  header nav a { padding: 10px 14px; border-radius: 10px; color: var(--muted); font-weight: 500; transition: color .2s, background .2s; }
+  header nav a:hover { color: var(--ink); background: #F1EBE6; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 40px; font-weight: 700; white-space: nowrap; transition: background .2s, color .2s, border-color .2s; }
+  .btn-r { background: var(--red); color: #fff; }
+  .btn-r:hover { background: var(--red-h); }
+  .btn-d { background: var(--ink); color: #fff; }
+  .btn-o { border: 1.5px solid var(--ink); color: var(--ink); }
+  .btn-o:hover { background: var(--ink); color: #fff; }
+
+  .hero { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; padding: 56px 0 30px; }
+  .hero .k { color: var(--red); font-weight: 600; letter-spacing: 3px; font-size: 13px; }
+  .hero h1 { font-size: 56px; line-height: 1.15; font-weight: 800; margin: 14px 0 16px; }
+  .hero h1 em { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: var(--red); }
+  .hero p { color: var(--muted); font-size: 18px; max-width: 460px; }
+  .hero .row { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .hero .perks { display: flex; gap: 22px; margin-top: 34px; flex-wrap: wrap; }
+  .hero .perks div { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 15px; }
+  .hero .perks svg.i { color: var(--red); }
+  .collage { display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; height: 560px; }
+  .collage div { border-radius: 24px; overflow: hidden; position: relative; }
+  .collage div:first-child { grid-row: span 2; }
+  .collage img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  .collage .badge { position: absolute; bottom: 14px; right: 14px; background: rgba(255,255,255,.92); border-radius: 30px; padding: 6px 14px; font-size: 13px; font-weight: 700; }
+  .collage .badge b { color: var(--red); }
+
+  section { padding-top: 72px; }
+  .sh { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 20px; }
+  .sh .k { color: var(--red); font-size: 13px; font-weight: 600; letter-spacing: 3px; }
+  .sh h2 { font-size: 34px; font-weight: 800; line-height: 1.25; }
+  .sh p { color: var(--muted); }
+  .chips { display: flex; gap: 8px; margin-bottom: 22px; overflow-x: auto; scrollbar-width: none; }
+  .chips button { white-space: nowrap; min-height: 40px; padding: 0 18px; border-radius: 40px; background: var(--card); border: 1px solid var(--line); color: var(--muted); font-weight: 500; font-size: 14px; }
+  .chips button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .card { background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(20,20,20,.05), 0 18px 44px rgba(20,20,20,.12); }
+  .card .ph { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #EEE7E1; }
+  .card .ph img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; transition: transform .5s; }
+  .card:hover .ph img { transform: scale(1.04); }
+  .tag { position: absolute; top: 12px; right: 12px; background: var(--red); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+  .tag.w { background: #fff; color: var(--ink); }
+  .fav { position: absolute; top: 10px; left: 10px; width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.9); display: grid; place-items: center; }
+  .fav svg.i { width: 18px; height: 18px; }
+  .card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .card h3 { font-size: 17px; font-weight: 700; }
+  .cols { display: flex; gap: 6px; }
+  .cols i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+  .sizes { display: flex; gap: 5px; }
+  .sizes span { min-width: 30px; text-align: center; border: 1px solid var(--line); border-radius: 8px; font-size: 12px; padding: 2px 6px; color: var(--muted); }
+  .pr { display: flex; align-items: baseline; gap: 8px; margin-top: auto; }
+  .pr b { font-size: 20px; font-weight: 800; }
+  .pr b small { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .pr s { color: var(--muted); font-size: 14px; }
+  .card .btn { min-height: 44px; width: 100%; font-size: 15px; }
+
+  .why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .why div { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .why .ic { width: 46px; height: 46px; border-radius: 14px; background: var(--red-soft); color: var(--red); display: grid; place-items: center; margin-bottom: 12px; }
+  .why b { display: block; font-size: 17px; }
+  .why span { color: var(--muted); font-size: 14px; }
+
+  .order { display: grid; grid-template-columns: 1fr 1fr; border-radius: 28px; overflow: hidden; background: var(--card); box-shadow: var(--shadow); }
+  .order .img { position: relative; min-height: 520px; }
+  .order .img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+  .order .f { padding: 40px; }
+  .order h2 { font-size: 30px; font-weight: 800; }
+  .order h2 em { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: var(--red); }
+  .order .sub { color: var(--muted); margin: 6px 0 22px; }
+  .sel { display: flex; align-items: center; gap: 12px; background: var(--bg); border-radius: 16px; padding: 10px; margin-bottom: 16px; }
+  .sel img { width: 54px; height: 70px; border-radius: 10px; object-fit: cover; object-position: center 15%; }
+  .sel b { display: block; }
+  .sel span { color: var(--red); font-weight: 800; }
+  .fld { margin-bottom: 12px; }
+  .fld label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .fld .in { min-height: 50px; border: 1.5px solid var(--line); border-radius: 14px; display: flex; align-items: center; padding: 0 14px; color: var(--muted); background: #fff; }
+  .f2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sz { display: flex; gap: 8px; }
+  .sz span { flex: 1; min-height: 44px; display: grid; place-items: center; border: 1.5px solid var(--line); border-radius: 12px; font-weight: 600; }
+  .sz span.on { border-color: var(--ink); background: var(--ink); color: #fff; }
+  .order .btn { width: 100%; margin-top: 8px; }
+  .order .note { text-align: center; color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+  .contact { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: stretch; }
+  .cbox { background: var(--ink); color: #fff; border-radius: 28px; padding: 36px; }
+  .cbox h2 { font-size: 30px; font-weight: 800; }
+  .cbox h2 em { font-family: "Playfair Display", serif; font-style: italic; color: #ff8a9d; font-weight: 500; }
+  .cbox p { color: #cfc6c0; margin: 10px 0 22px; }
+  .cbox .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .cbox .btn-o { border-color: rgba(255,255,255,.4); color: #fff; }
+  .info { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 30px; display: grid; gap: 14px; align-content: center; }
+  .info div { display: flex; align-items: center; gap: 12px; }
+  .info .ic { width: 42px; height: 42px; border-radius: 12px; background: var(--red-soft); color: var(--red); display: grid; place-items: center; }
+  .info span { color: var(--muted); font-size: 14px; display: block; }
+  footer { margin-top: 72px; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; min-height: 76px; color: var(--muted); font-size: 14px; gap: 12px; }
+  .mbar { display: none; }
+
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+    .why { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    header .wrap { height: 64px; }
+    header nav, header .hdr { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 24px 0 10px; gap: 24px; }
+    .collage { order: -1; height: 380px; gap: 10px; }
+    .hero h1 { font-size: 38px; }
+    .hero p { font-size: 16px; }
+    .hero .row .btn { flex: 1; }
+    .hero .perks { gap: 14px; margin-top: 22px; }
+    section { padding-top: 52px; }
+    .sh h2 { font-size: 26px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card .body { padding: 10px 12px 12px; }
+    .card h3 { font-size: 15px; }
+    .sizes { display: none; }
+    .pr b { font-size: 17px; }
+    .card .btn { min-height: 42px; font-size: 14px; padding: 0 10px; }
+    .why { gap: 10px; }
+    .why div { padding: 16px; }
+    .order { grid-template-columns: 1fr; }
+    .order .img { min-height: 300px; }
+    .order .f { padding: 24px 18px; }
+    .contact { grid-template-columns: 1fr; }
+    .cbox { padding: 28px 22px; }
+    footer { margin-bottom: 76px; }
+    footer .wrap { flex-direction: column; justify-content: center; text-align: center; padding: 16px; }
+    .mbar { display: flex; gap: 10px; position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(250,247,244,.96); backdrop-filter: blur(10px); border-top: 1px solid var(--line); }
+    .mbar .btn { flex: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M10 17h4V5H2v12h3"/><path d="M14 8h4l4 4v5h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 7h12l1 14H5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+  </svg>
+
+  <div class="strip">🚚 التوصيل متوفر لجميع الولايات · <b>التبديل ممكن</b> · مرحبا بيك 🤍</div>
+
+  <header>
+    <div class="wrap">
+      <a class="logo" href="#"><b>Collection <span>by HR</span></b><small>RED1 · WOMEN</small></a>
+      <nav aria-label="القائمة"><a href="#shop">الكوليكسيون</a><a href="#order">اطلبي</a><a href="#contact">تواصل</a></nav>
+      <a class="btn btn-r hdr" href="#shop"><svg class="i"><use href="#i-bag"/></svg>تسوّقي الآن</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div>
+        <div class="k"><span class="ltr">NEW COLLECTION</span></div>
+        <h1>فساتين <em>أنيقة</em><br>لكل مناسبة</h1>
+        <p>فساتين سهرة، فساتين يومية وأطقم نسائية مختارة بعناية. اختاري الموديل والمقاس، وتوصلك لباب الدار.</p>
+        <div class="row"><a class="btn btn-r" href="#shop"><svg class="i"><use href="#i-bag"/></svg>شوفي الكوليكسيون</a><a class="btn btn-o" href="#order">كيفاش نطلب؟</a></div>
+        <div class="perks"><div><svg class="i"><use href="#i-truck"/></svg>التوصيل لجميع الولايات</div><div><svg class="i"><use href="#i-swap"/></svg>التبديل ممكن</div></div>
+      </div>
+      <div class="collage">
+        <div><img src="img/d2.jpg" alt="فستان أسود سهرة"><span class="badge"><b>✦</b> وصل جديد</span></div>
+        <div><img src="img/d9.jpg" alt="فستان أبيض"></div>
+        <div><img src="img/d10.jpg" alt="فستان أسود بالأزرار"></div>
+      </div>
+    </div>
+
+    <section id="shop">
+      <div class="sh"><div><div class="k"><span class="ltr">THE COLLECTION</span></div><h2>الكوليكسيون</h2><p>كل موديل بالسعر والمقاسات</p></div></div>
+      <div class="chips" role="group" aria-label="تصفية"><button aria-pressed="true">الكل</button><button aria-pressed="false">فساتين سهرة</button><button aria-pressed="false">فساتين يومية</button><button aria-pressed="false">أسود</button><button aria-pressed="false">أبيض</button><button aria-pressed="false">جديد</button></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section>
+      <div class="why">
+        <div><span class="ic"><svg class="i"><use href="#i-truck"/></svg></span><b>توصيل لجميع الولايات</b><span>للدار ولا للمكتب</span></div>
+        <div><span class="ic"><svg class="i"><use href="#i-swap"/></svg></span><b>التبديل ممكن</b><span>إذا المقاس ما جاش</span></div>
+        <div><span class="ic"><svg class="i"><use href="#i-cash"/></svg></span><b>الدفع عند الاستلام</b><span>خلّصي كي توصلك</span></div>
+        <div><span class="ic"><svg class="i"><use href="#i-chat"/></svg></span><b>نجاوبوك بسرعة</b><span>على إنستغرام</span></div>
+      </div>
+    </section>
+
+    <section id="order">
+      <div class="order">
+        <div class="img"><img src="img/d7.jpg" alt=""></div>
+        <div class="f">
+          <h2>اطلبي في <em>دقيقة</em></h2>
+          <div class="sub">بلا ما تستناي الرد في الميساجات: اختاري المقاس، عمّري معلوماتك، ونعيطولك نأكدو.</div>
+          <div class="sel"><img id="sel-img" src="img/d7.jpg" alt=""><div><b id="sel-name">فستان أسود بخط أبيض</b><span id="sel-price">6 900 دج</span></div></div>
+          <div class="fld"><label>المقاس</label><div class="sz"><span>S</span><span class="on">M</span><span>L</span><span>XL</span></div></div>
+          <div class="fld"><label>الاسم واللقب</label><div class="in">مثال: سارة بن علي</div></div>
+          <div class="f2"><div class="fld"><label>رقم الهاتف</label><div class="in"><span class="ltr">05 •• •• •• ••</span></div></div><div class="fld"><label>الولاية</label><div class="in">اختاري الولاية ▾</div></div></div>
+          <a class="btn btn-r" href="#"><svg class="i"><use href="#i-check"/></svg>أكّدي الطلبية</a>
+          <div class="note">الدفع عند الاستلام · التبديل ممكن</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <div class="cbox"><h2>عندك سؤال على <em>موديل</em>؟</h2><p>ابعثيلنا ميساج على إنستغرام، ونعاونوك تختاري المقاس واللون.</p><div class="row"><a class="btn btn-r" href="#"><svg class="i"><use href="#i-insta"/></svg>إنستغرام</a><a class="btn btn-o" href="#shop">شوفي الكوليكسيون</a></div></div>
+        <div class="info">
+          <div><span class="ic"><svg class="i"><use href="#i-insta"/></svg></span><div><b class="ltr">@collection_red1_by_hr</b><span>Instagram</span></div></div>
+          <div><span class="ic"><svg class="i"><use href="#i-truck"/></svg></span><div><b>التوصيل لجميع الولايات</b><span>للدار ولا للمكتب</span></div></div>
+          <div><span class="ic"><svg class="i"><use href="#i-swap"/></svg></span><div><b>التبديل ممكن</b><span>تواصلي معانا</span></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span class="logo"><b style="font-size:20px">Collection <span>by HR</span></b></span><span>فساتين نسائية · التوصيل لجميع الولايات</span></div></footer>
+
+  <div class="mbar"><a class="btn btn-o" href="#contact"><svg class="i"><use href="#i-chat"/></svg>تواصلي</a><a class="btn btn-r" href="#shop"><svg class="i"><use href="#i-bag"/></svg>اطلبي الآن</a></div>
+
+<script>
+  const P = [
+    { n: "فستان سهرة أسود بأكمام شيفون", img: "img/d2.jpg", p: "8 900", c: ["#111"], tag: "جديد" },
+    { n: "فستان أبيض بأكمام مطرّزة", img: "img/d9.jpg", p: "9 500", c: ["#F4F1EA"], tag: "سهرة" },
+    { n: "فستان أسود بالأزرار الذهبية", img: "img/d10.jpg", p: "7 900", c: ["#111"], tag: "الأكثر طلباً" },
+    { n: "فستان أسود بخط أبيض", img: "img/d7.jpg", p: "6 900", c: ["#111", "#F4F1EA"] },
+    { n: "فستان أبيض ميدي بالفتحة", img: "img/d11.jpg", p: "6 500", old: "7 500", c: ["#F4F1EA"], tag: "-15%" },
+    { n: "فستان ماروني كلوش", img: "img/d3.jpg", p: "5 900", c: ["#4A2A22", "#111"] },
+    { n: "فستان أسود طويل كلاسيك", img: "img/d5.jpg", p: "6 900", c: ["#111", "#D9C9B6"] },
+    { n: "فستان أسود بالحزام", img: "img/d6.jpg", p: "6 500", c: ["#111"] },
+  ];
+  document.getElementById("grid").innerHTML = P.map((x, i) => `
+    <article class="card">
+      <div class="ph"><img src="${x.img}" alt="${x.n}" loading="lazy">${x.tag ? `<span class="tag${x.tag === "سهرة" ? " w" : ""}">${x.tag}</span>` : ""}<button class="fav" aria-label="أضيفي للمفضلة"><svg class="i"><use href="#i-heart"/></svg></button></div>
+      <div class="body">
+        <h3>${x.n}</h3>
+        <div class="cols">${x.c.map((c) => `<i style="background:${c}"></i>`).join("")}</div>
+        <div class="sizes ltr"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+        <div class="pr"><b><bdi>${x.p}</bdi> <small>دج</small></b>${x.old ? `<s><bdi>${x.old}</bdi></s>` : ""}</div>
+        <button class="btn btn-d" data-i="${i}"><svg class="i"><use href="#i-bag"/></svg>اطلبي الآن</button>
+      </div>
+    </article>`).join("");
+  document.getElementById("grid").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-i]"); if (!b) return;
+    const x = P[b.dataset.i];
+    document.getElementById("sel-img").src = x.img;
+    document.getElementById("sel-name").textContent = x.n;
+    document.getElementById("sel-price").textContent = x.p + " دج";
+    document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+  });
+  document.querySelectorAll(".chips button").forEach((b) => b.addEventListener("click", () => document.querySelectorAll(".chips button").forEach((x) => x.setAttribute("aria-pressed", x === b))));
+  if (location.hash === "#full") document.querySelector(".mbar").style.display = "none";
+  document.querySelectorAll(".sz span").forEach((s) => s.addEventListener("click", () => document.querySelectorAll(".sz span").forEach((x) => x.classList.toggle("on", x === s))));
+</script>
+</body>
+</html>

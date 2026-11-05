@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurenne — The Queen's Aura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F8F1EC;
+    --blush: #EFDCD3;
+    --wine: #6B1628;
+    --wine-deep: #4A0E1B;
+    --rose: #C79A7E;
+    --ink: #2B1A1C;
+    --muted: #8C7472;
+    --line: rgba(107,22,40,0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: "Cairo", sans-serif; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .serif { font-family: "Cormorant Garamond", serif; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  .marquee { background: var(--wine-deep); color: var(--blush); font-size: 13px; letter-spacing: 1px; padding: 9px 0; overflow: hidden; white-space: nowrap; }
+  .marquee span { display: inline-block; padding: 0 28px; }
+  .marquee b { color: var(--rose); font-weight: 400; }
+
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 96px; }
+  .nav { display: flex; gap: 28px; font-size: 15px; font-weight: 600; color: var(--muted); }
+  .nav.end { justify-content: flex-end; }
+  .brand { text-align: center; direction: ltr; }
+  .brand b { display: block; font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 46px; letter-spacing: 6px; color: var(--wine); line-height: 1; }
+  .brand small { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 15px; color: var(--rose); letter-spacing: 2px; }
+  .bag { display: inline-flex; gap: 8px; align-items: center; color: var(--wine); font-weight: 700; }
+  .bag i { font-style: normal; background: var(--wine); color: #fff; border-radius: 20px; padding: 0 9px; font-size: 13px; }
+  .burger { display: none; }
+
+  .hero { display: grid; grid-template-columns: 1fr 1.15fr 0.7fr; gap: 22px; padding: 44px 0 60px; align-items: end; }
+  .hero-text .kick { font-family: "Cormorant Garamond", serif; font-style: italic; color: var(--rose); font-size: 22px; direction: ltr; text-align: right; }
+  .hero-text h1 { font-family: "Cormorant Garamond", serif; font-weight: 500; font-size: 96px; line-height: .92; color: var(--wine); direction: ltr; text-align: right; margin: 10px 0 24px; }
+  .hero-text h1 em { font-style: italic; color: var(--rose); }
+  .hero-text p { font-size: 18px; line-height: 1.9; color: var(--muted); max-width: 420px; margin-right: auto; margin-left: 0; }
+  .cta { display: inline-flex; align-items: center; gap: 14px; margin-top: 28px; background: var(--wine); color: #fff; padding: 16px 30px; border-radius: 2px; font-weight: 700; letter-spacing: .5px; }
+  .cta-alt { display: inline-block; margin: 28px 18px 0 0; border-bottom: 1.5px solid var(--wine); color: var(--wine); font-weight: 700; padding-bottom: 4px; }
+  .hero-main { position: relative; height: 640px; overflow: hidden; }
+  .hero-main img, .stack img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-main .label { position: absolute; bottom: 0; right: 0; left: 0; padding: 70px 24px 22px; background: linear-gradient(transparent, rgba(43,10,18,.75)); color: #fff; display: flex; justify-content: space-between; align-items: end; }
+  .hero-main .label b { font-size: 22px; }
+  .hero-main .label span { font-family: "Cormorant Garamond", serif; font-size: 26px; }
+  .stack { display: grid; gap: 22px; height: 640px; grid-template-rows: 1fr 1fr; }
+  .stack div { overflow: hidden; position: relative; }
+  .stack em { position: absolute; top: 14px; right: 14px; background: var(--paper); color: var(--wine); font-style: normal; font-size: 12px; font-weight: 800; padding: 4px 12px; }
+
+  .band { background: var(--wine); color: var(--blush); overflow: hidden; white-space: nowrap; padding: 26px 0; direction: ltr; }
+  .band span { font-family: "Cormorant Garamond", serif; font-size: 54px; font-style: italic; padding: 0 26px; }
+  .band span.o { color: transparent; -webkit-text-stroke: 1px var(--rose); font-style: normal; }
+
+  section { padding: 90px 0 0; }
+  .head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 34px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+  .head h2 { font-size: 40px; font-weight: 800; color: var(--wine); }
+  .head h2 small { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500; color: var(--rose); font-size: 26px; margin-right: 10px; }
+  .head a { color: var(--wine); font-weight: 700; }
+
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--blush); }
+  .feature .img { height: 620px; overflow: hidden; }
+  .feature .img img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .feature .txt { padding: 70px 64px; display: flex; flex-direction: column; justify-content: center; }
+  .feature .num { font-family: "Cormorant Garamond", serif; font-size: 20px; color: var(--rose); direction: ltr; text-align: right; }
+  .feature h3 { font-size: 44px; font-weight: 800; color: var(--wine); margin: 10px 0 14px; }
+  .feature p { color: var(--muted); line-height: 2; font-size: 17px; }
+  .opt { margin-top: 26px; }
+  .opt label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 10px; letter-spacing: 1px; }
+  .sw { display: flex; gap: 12px; }
+  .sw i { width: 34px; height: 34px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line); }
+  .sw i.on { box-shadow: 0 0 0 2px var(--wine); }
+  .sz { display: flex; gap: 10px; }
+  .sz span { width: 48px; height: 42px; display: grid; place-items: center; border: 1px solid var(--line); background: var(--paper); font-weight: 700; direction: ltr; }
+  .sz span.on { background: var(--wine); color: #fff; border-color: var(--wine); }
+  .feature .row { display: flex; align-items: center; gap: 24px; margin-top: 34px; }
+  .feature .price { font-size: 34px; font-weight: 800; color: var(--wine); }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+  .item .ph { position: relative; height: 430px; overflow: hidden; background: var(--blush); }
+  .item .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .item .ph .new { position: absolute; top: 14px; right: 14px; background: var(--paper); color: var(--wine); font-size: 12px; font-weight: 800; padding: 4px 12px; }
+  .item .ph .quick { position: absolute; bottom: 14px; right: 14px; left: 14px; background: rgba(248,241,236,.94); color: var(--wine); text-align: center; padding: 11px; font-weight: 800; font-size: 14px; }
+  .item h4 { font-size: 18px; margin: 14px 0 4px; }
+  .item .meta { display: flex; justify-content: space-between; align-items: center; }
+  .item .meta b { color: var(--wine); font-size: 18px; }
+  .dots { display: flex; gap: 6px; }
+  .dots i { width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 0 0 1px var(--line); }
+
+  .look { position: relative; height: 560px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .look img { width: 100%; height: 100%; object-fit: cover; }
+  .look .over { position: absolute; inset: 0; background: rgba(43,10,18,.55); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; padding: 20px; }
+  .look .over .serif { font-style: italic; font-size: 30px; color: var(--blush); }
+  .look .over h2 { font-size: 52px; font-weight: 800; line-height: 1.35; margin: 10px 0 24px; }
+  .look .over .cta { background: var(--paper); color: var(--wine); margin: 0; }
+
+  .checkout { display: grid; grid-template-columns: 0.9fr 1.1fr; border: 1px solid var(--line); background: #fff; }
+  .summary { background: var(--wine-deep); color: var(--blush); padding: 46px; }
+  .summary .serif { font-style: italic; font-size: 24px; color: var(--rose); }
+  .summary h3 { font-size: 34px; color: #fff; margin: 6px 0 26px; }
+  .line-item { display: flex; gap: 16px; align-items: center; padding: 16px 0; border-top: 1px solid rgba(239,220,211,.18); }
+  .line-item img { width: 74px; height: 92px; object-fit: cover; }
+  .line-item div { flex: 1; }
+  .line-item small { color: var(--rose); display: block; }
+  .tot { display: flex; justify-content: space-between; border-top: 1px solid rgba(239,220,211,.18); padding-top: 18px; margin-top: 4px; font-size: 18px; }
+  .tot b { font-size: 26px; color: #fff; }
+  .badges { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+  .badges span { border: 1px solid rgba(239,220,211,.35); padding: 6px 14px; font-size: 13px; }
+  .form { padding: 46px; }
+  .steps { display: flex; gap: 0; margin-bottom: 30px; }
+  .steps div { flex: 1; border-top: 3px solid var(--blush); padding-top: 10px; font-size: 13px; color: var(--muted); font-weight: 700; }
+  .steps div.on { border-color: var(--wine); color: var(--wine); }
+  .f2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .fld label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .fld div { border: 1px solid var(--line); background: var(--paper); padding: 14px 16px; font-size: 16px; }
+  .pick { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 4px 0 24px; }
+  .pick div { border: 1px solid var(--line); padding: 14px; text-align: center; font-weight: 700; }
+  .pick div.on { border: 2px solid var(--wine); color: var(--wine); }
+  .form .cta { width: 100%; justify-content: center; margin: 0; padding: 18px; font-size: 17px; }
+
+  .reines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .q { border-top: 2px solid var(--wine); padding-top: 20px; }
+  .q .serif { font-size: 60px; color: var(--rose); line-height: .5; display: block; height: 30px; }
+  .q p { font-size: 17px; line-height: 1.9; margin: 8px 0 12px; }
+  .q span { color: var(--muted); font-size: 14px; }
+
+  footer { margin-top: 100px; background: var(--wine); color: var(--blush); }
+  footer .wrap { padding-top: 60px; padding-bottom: 40px; display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
+  footer .brand { text-align: right; }
+  footer .brand b { color: #fff; }
+  footer h5 { color: #fff; font-size: 16px; margin-bottom: 12px; }
+  footer p { line-height: 2.1; font-size: 15px; opacity: .85; }
+  .copy { border-top: 1px solid rgba(239,220,211,.2); text-align: center; padding: 18px; font-size: 13px; opacity: .7; }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    header .wrap { grid-template-columns: auto 1fr auto; height: 72px; }
+    .nav { display: none; }
+    .burger { display: block; width: 24px; height: 16px; border-top: 2px solid var(--wine); border-bottom: 2px solid var(--wine); }
+    .brand b { font-size: 34px; }
+    .brand small { font-size: 12px; }
+    .hero { grid-template-columns: 1fr 1fr; padding: 18px 0 36px; gap: 10px; }
+    .hero-text { grid-column: 1 / -1; order: 3; padding-top: 18px; }
+    .hero-text h1 { font-size: 62px; }
+    .hero-text p { font-size: 16px; }
+    .hero-main { height: 400px; }
+    .stack { height: 400px; gap: 10px; }
+    .hero-main .label b { font-size: 16px; }
+    .hero-main .label span { display: none; }
+    .stack em { font-size: 11px; padding: 3px 8px; }
+    .band span { font-size: 34px; }
+    section { padding-top: 56px; }
+    .head h2 { font-size: 28px; }
+    .head h2 small { display: block; margin: 0; font-size: 20px; }
+    .feature, .checkout { grid-template-columns: 1fr; }
+    .feature .img { height: 440px; }
+    .feature .txt { padding: 32px 22px; }
+    .feature h3 { font-size: 32px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .item .ph { height: 260px; }
+    .item .ph .quick { font-size: 12px; padding: 8px; }
+    .item h4 { font-size: 15px; }
+    .look { height: 460px; grid-template-columns: 1fr 1fr; }
+    .look img:nth-child(3) { display: none; }
+    .look .over h2 { font-size: 30px; }
+    .summary, .form { padding: 26px 20px; }
+    .reines { grid-template-columns: 1fr; }
+    footer .wrap { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+  <div class="marquee">
+    <span>🪞 Livraison disponible <b>58 wilaya</b> 🇩🇿</span><span>✨ Paiement à la livraison</span><span>👑 The Queen’s Aura</span><span>✨ From me to Reines</span><span>🪞 Livraison disponible <b>58 wilaya</b> 🇩🇿</span><span>✨ Paiement à la livraison</span>
+  </div>
+
+  <header>
+    <div class="wrap">
+      <nav class="nav"><a href="#">Nouveautés</a><a href="#">فساتين</a><a href="#">ترانش</a><a href="#">بليزر</a></nav>
+      <span class="burger"></span>
+      <a class="brand" href="#"><b>AURENNE</b><small>The Queen’s Aura 👑</small></a>
+      <nav class="nav end"><a href="#">Lookbook</a><a href="#">Reines 💬</a><a class="bag" href="#">السلة <i>2</i></a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="hero-text">
+        <div class="kick">Collection Hiver 2026</div>
+        <h1>The Queen’s <em>Aura</em></h1>
+        <p>أوتفيتاتك لهذا الشتاء كامل من عندنا: فساتين فلور، ترانش وبليزرات بستايل راقي. From me to Reines ✨</p>
+        <a class="cta" href="#shop">تسوّقي الكوليكسيون ←</a><a class="cta-alt" href="#order">كيفاش نطلب؟</a>
+      </div>
+      <div class="hero-main">
+        <img src="ig/ig5.jpg" alt="">
+        <div class="label"><b>فستان بوردو بالبليسي</b><span class="serif">Robe Bordeaux</span></div>
+      </div>
+      <div class="stack">
+        <div><img src="ig/ig2.jpg" alt="" style="object-position:center 60%"><em>Velours</em></div>
+        <div><img src="ig/ig10.jpg" alt="" style="object-position:center 45%"><em>Trench</em></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="band"><span>Velours</span><span class="o">Trench Coat</span><span>Robes</span><span class="o">Blazers</span><span>Reines ✨</span><span class="o">Velours</span><span>Trench Coat</span></div>
+
+  <main class="wrap">
+    <section>
+      <div class="head"><h2>قطعة الأسبوع <small>Pièce de la semaine</small></h2></div>
+      <div class="feature">
+        <div class="img"><img src="ig/ig1.jpg" alt=""></div>
+        <div class="txt">
+          <div class="num">N° 01 — Collection Velours</div>
+          <h3>فستان فلور مطرّز</h3>
+          <p>فلور ناعم بلون الأحمر الملكي، تطريز ذهبي على الصدر والحزام والأكمام. للأعراس، العشيات والمناسبات.</p>
+          <div class="opt"><label>اللون</label><div class="sw"><i class="on" style="background:#8E1426"></i><i style="background:#0F3B2E"></i><i style="background:#1C1C1C"></i></div></div>
+          <div class="opt"><label>المقاس</label><div class="sz"><span>S</span><span class="on">M</span><span>L</span><span>XL</span></div></div>
+          <div class="row"><span class="price"><bdi>8 900</bdi> دج</span><a class="cta" style="margin:0">زيدي للسلة</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop">
+      <div class="head"><h2>وصل جديد <small>Nouveautés</small></h2><a href="#">شوفي الكل ←</a></div>
+      <div class="grid">
+        <div class="item"><div class="ph"><img src="ig/ig4.jpg" alt="" style="object-position:center 60%"><span class="new">NEW</span><span class="quick">+ اطلبي</span></div><h4>ترانش ماروني طويل</h4><div class="meta"><b><bdi>7 500</bdi> دج</b><span class="dots"><i style="background:#7A4A33"></i><i style="background:#D8C3A5"></i></span></div></div>
+        <div class="item"><div class="ph"><img src="ig/ig6.jpg" alt="" style="object-position:center 55%"><span class="quick">+ اطلبي</span></div><h4>بليزر بيج كلاسيك</h4><div class="meta"><b><bdi>5 900</bdi> دج</b><span class="dots"><i style="background:#CDB08A"></i><i style="background:#1C1C1C"></i></span></div></div>
+        <div class="item"><div class="ph"><img src="ig/ig9.jpg" alt="" style="object-position:center 60%"><span class="new">NEW</span><span class="quick">+ اطلبي</span></div><h4>فستان بوردو بالأزرار</h4><div class="meta"><b><bdi>6 500</bdi> دج</b><span class="dots"><i style="background:#6B1628"></i><i style="background:#2B2B2B"></i></span></div></div>
+        <div class="item"><div class="ph"><img src="ig/ig8.jpg" alt="" style="object-position:center 60%"><span class="quick">+ اطلبي</span></div><h4>ترانش كاميل</h4><div class="meta"><b><bdi>7 200</bdi> دج</b><span class="dots"><i style="background:#C2A07C"></i><i style="background:#EDE3D3"></i></span></div></div>
+      </div>
+    </section>
+  </main>
+
+  <section>
+    <div class="look">
+      <img src="ig/ig12.jpg" alt="" style="object-position:center 60%"><img src="ig/ig10.jpg" alt="" style="object-position:center 50%"><img src="ig/ig6.jpg" alt="" style="object-position:center 50%">
+      <div class="over">
+        <div class="serif">Lookbook Hiver</div>
+        <h2>علابالك بلي أوتفيتاتك<br>لهذا الشتاء كامل من عندنا ❤️</h2>
+        <a class="cta" href="#shop">اكتشفي اللوك بوك</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section id="order">
+      <div class="head"><h2>طلبيتك <small>Commande</small></h2></div>
+      <div class="checkout">
+        <div class="summary">
+          <div class="serif">Votre panier</div>
+          <h3>2 قطع في السلة</h3>
+          <div class="line-item"><img src="ig/ig1.jpg" alt=""><div><b>فستان فلور مطرّز</b><small>أحمر · M</small></div><b><bdi>8 900</bdi> دج</b></div>
+          <div class="line-item"><img src="ig/ig10.jpg" alt="" style="object-position:center 40%"><div><b>ترانش كريمي بالحزام</b><small>كريمي · S</small></div><b><bdi>7 200</bdi> دج</b></div>
+          <div class="tot"><span>المجموع</span><b><bdi>16 100</bdi> دج</b></div>
+          <div class="badges"><span>🚚 58 ولاية</span><span>💵 الدفع عند الاستلام</span><span>🔁 تبديل المقاس</span></div>
+        </div>
+        <div class="form">
+          <div class="steps"><div class="on">1. السلة</div><div class="on">2. المعلومات</div><div>3. التأكيد</div></div>
+          <div class="f2"><div class="fld"><label>الاسم واللقب</label><div>سارة م.</div></div><div class="fld"><label>رقم الهاتف</label><div dir="ltr" style="text-align:right">06 •• •• •• ••</div></div></div>
+          <div class="f2"><div class="fld"><label>الولاية</label><div>25 - قسنطينة ▾</div></div><div class="fld"><label>البلدية</label><div>الخروب ▾</div></div></div>
+          <div class="fld" style="margin-bottom:6px"><label>التوصيل</label></div>
+          <div class="pick"><div class="on">🏠 للدار</div><div>🏢 للمكتب (Stop desk)</div></div>
+          <a class="cta">تأكيد الطلبية · الدفع عند الاستلام</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="head"><h2>آراء الرينات <small>Retours des Reines 👑</small></h2></div>
+      <div class="reines">
+        <div class="q"><span class="serif">“</span><p>بلاصة لآراء زبوناتك الحقيقية، من الـ "Retour" اللي عندك فالستوريات.</p><span>— Reine من وهران</span></div>
+        <div class="q"><span class="serif">“</span><p>كل رأي يتحط مع تصويرة الزبونة بالقطعة، باش اللي جديدة تثق وتطلب.</p><span>— Reine من سطيف</span></div>
+        <div class="q"><span class="serif">“</span><p>وتقدري تزيدي كواليس التحضير والتغليف تاع الطلبيات ❤️</p><span>— Reine من الجزائر</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div><span class="brand"><b>AURENNE</b><small>The Queen’s Aura 👑</small></span><p style="margin-top:14px">From me to Reines ✨<br>فساتين، ترانش وبليزرات بستايل راقي.</p></div>
+      <div><h5>التوصيل والدفع</h5><p>🪞 التوصيل لـ 58 ولاية<br>🪞 الدفع عند الاستلام<br>🪞 للدار ولا Stop desk</p></div>
+      <div><h5>تواصلي معانا</h5><p>📸 Instagram: @aurenne.boutique<br>💬 DM مفتوح للطلبيات</p></div>
+    </div>
+    <div class="copy">© 2026 Aurenne Boutique</div>
+  </footer>
+</body>
+</html>
