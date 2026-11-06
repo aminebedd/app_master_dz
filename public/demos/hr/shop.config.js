@@ -14,7 +14,13 @@ window.SHOP = {
   inline: [{ container: "#order .ds-hrform" }],
   filters: [{ buttons: ".chips button", map: { "فساتين سهرة": "سهرة", "فساتين يومية": "!سهرة" }, scope: "#grid .card" }],
   sections: { products: "#shop", contact: "#contact" },
-  css: "@media (max-width:760px){.ds-fcart{bottom:86px}}",
+  css: [
+    "@media (max-width:760px){.ds-fcart{bottom:86px}}",
+    // Mobile overflow: the long Instagram handle can't wrap and grid items won't shrink below it,
+    // which pushed the whole page to ~410px wide on a 375px phone.
+    ".contact>*,.info div>div{min-width:0}",
+    ".info b{overflow-wrap:anywhere}",
+  ].join(""),
   instagram: "collection_red1_by_hr",
   maps: "Collection by HR",
 };

@@ -20,6 +20,17 @@ window.SHOP = {
       },
     },
   ],
+  css: [
+    // Mobile overflow: the filter tabs row and the order builder's grid items wouldn't shrink,
+    // pushing the page wider than a 360px phone.
+    ".builder>*,.fabric>*{min-width:0}",
+    "@media (max-width:760px){",
+    ".tabs{flex-wrap:wrap;row-gap:8px}",
+    ".swatch{flex-wrap:wrap}",
+    ".cfg .buy{grid-template-columns:1fr}",
+    ".sizes{gap:6px}",
+    "}",
+  ].join(""),
   instagram: "m_boutique16",
   maps: "M Boutique",
 };
